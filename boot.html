@@ -101,7 +101,8 @@ html,body{margin:0;height:100%;background:#060509;color:#ededf0;font:14px/1.5 sy
         }
         // Hand off to the app with a marker the worker reads to serve the app page
         // instead of this loader (which it serves for a bare visit, every time).
-        var handoff = function () { location.replace(location.pathname + "?go=1"); };
+        // Keep the framed-page marker (nocab=1) so the app still shows its own bars inside a frame.
+        var handoff = function () { location.replace(location.pathname + "?go=1" + (location.search.indexOf("nocab=1") !== -1 ? "&nocab=1" : "")); };
         if (!navigator.serviceWorker.controller) {
             // Worker never took control. Count the attempt so a stuck worker can't loop.
             var n = tries();
