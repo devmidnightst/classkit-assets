@@ -50,7 +50,9 @@
         // Bare entry: show the loader (with the asset counter) every visit, unless
         // the loader is handing off to the app (?go=1). Deep links (/search, /go)
         // skip the loader so their path is kept.
-        if (p === "/" || p === "/index.html") {
+        // A bucket can also keep its entry page in a folder (/name/index.html),
+        // with the worker stubs still at the root. That path is the same entry.
+        if (p === "/" || p === "/index.html" || /^\/[A-Za-z0-9_-]+\/index\.html$/.test(p)) {
             if (dest === "document" && url.search.indexOf("go=1") === -1 && FILES.has("/boot.html")) return "/boot.html";
             return "/index.html";
         }
