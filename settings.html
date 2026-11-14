@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/mirror/session.js"></script><script>window.__NOC_API_BASE="https://ao.soccer";</script><script src="/mirror/boot.js"></script><script>(function(){try{if(window.__nocFilt)return;window.__nocFilt=1;var BAD=new RegExp(atob("YmFyZVstXyBdP211eHxiYXJlbXV4fHNjcmFtamV0fHVsdHJhdmlvbGV0fFxiZXBveHlcYnxcYndpc3BcYnxVVlNlcnZpY2VXb3JrZXJ8QmFyZU11eHxVbHRyYXZpb2xldHxCYXJlQ2xpZW50fEJhcmVUcmFuc3BvcnR8XCRzY3JhbWpldHx1dlwuYnVuZGxlfHV2XC5zd3x1dlwuaGFuZGxlcnx1dlwuY2xpZW50fHV2LXdvcmtlcnx1di1jb25maWd8cGFnZS1pbml0fHBhZ2UtY29uZmlnfG5vY3R1cm5lOmluaXR8Y29udHJvbGxlcmNoYW5nZXx3aXNwWy0gXT9wYXRofHRpdGFuaXVtbmV0d29ya3xtZXJjdXJ5d29ya3Nob3B8c2V0IHRyYW5zcG9ydCB0b3xlcnJvciB3aGlsZSBwcm9jZXNzaW5nfG5vIGJhcmUgY2xpZW50c3x3b3JrZXJQYXRofE1lc3NhZ2VQb3J0"),"i");var O={};["log","warn","error","info","debug","trace"].forEach(function(k){var o=console[k];if(typeof o!=="function")return;O[k]=o;console[k]=function(){try{for(var i=0;i<arguments.length;i++){var v=arguments[i];var s=(typeof v==="string")?v:(v&&v.message)?v.message:"";if(s&&BAD.test(s))return;}}catch(e){}return o.apply(console,arguments);};});var B="\n _   _    ___     ____   _____   _   _   ____    _   _   _____      _        ___    _ \n| \\ | |  / _ \\   / ___| |_   _| | | | | |  _ \\  | \\ | | | ____|    | |      / _ \\  | |\n|  \\| | | | | | | |       | |   | | | | | |_) | |  \\| | |  _|      | |     | | | | | |\n| |\\  | | |_| | | |___    | |   | |_| | |  _ <  | |\\  | | |___  _  | |___  | |_| | |___\n|_| \\_|  \\___/   \\____|   |_|    \\___/  |_| \\_\\ |_| \\_| |_____|(_) |_____|  \\___/  |_____|\n\n              "+location.host+"\n";window.__nocBanner=function(){try{(O.log||function(){}).call(console,"%c"+B,"color:#b8b0da;font-family:ui-monospace,monospace;font-size:11px;line-height:1.2");}catch(e){}};if(window.self===window.top&&!window.__nocB1){window.__nocB1=1;window.__nocBanner();var L=O.log||function(){};try{var _vm=(new URLSearchParams(location.search).get("mode")||localStorage.getItem("view-mode")||"std").toLowerCase();L.call(console,"mode="+(_vm==="exp"?"6b":"6a"));}catch(e){}try{fetch("/api/auth/me",{credentials:"same-origin",cache:"no-store"}).then(function(r){return r.json();}).then(function(m){if(m&&m.authenticated&&m.user)L.call(console,"user logged in ("+m.user.id+")");}).catch(function(){});}catch(e){}}}catch(e){}})();</script><script>(function(){try{var noEmbed=false;try{noEmbed=location.search.indexOf("nocab=1")!==-1;}catch(e){}if(window.self!==window.top&&!noEmbed)document.documentElement.classList.add("noc-embedded");}catch(e){}})();</script><style>html.noc-embedded a[href="/"],html.noc-embedded a[href="/index.html"],html.noc-embedded a.brand,html.noc-embedded #tabStrip,html.noc-embedded #toolbar,html.noc-embedded #dock,html.noc-embedded .discord-chip,html.noc-embedded #navRail{display:none!important}</style><style>#nocAdsNote{position:fixed;left:calc(var(--sb-w,0px) + 16px);bottom:52px;z-index:2147483600;box-sizing:border-box;width:min(304px,calc(100vw - var(--sb-w,0px) - 32px));padding:12px 14px 15px;overflow:hidden;background:#12101a;border:1px solid rgba(184,176,218,.3);border-radius:0;color:#eae6ff;box-shadow:0 14px 40px rgba(0,0,0,.5);font:500 13px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left;transform:translateY(18px);opacity:0;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .35s ease}#nocAdsNote.on{transform:none;opacity:1}#nocAdsNote.out{transform:translateY(12px);opacity:0;pointer-events:none;transition-duration:.35s,.28s}#nocAdsNote .top{display:flex;align-items:center;gap:9px}#nocAdsNote .price{flex:none;padding:3px 7px;border:1px solid rgba(184,176,218,.5);background:rgba(184,176,218,.1);font-weight:700;font-size:12px;line-height:1.2;color:#eae6ff}#nocAdsNote h2{flex:1;min-width:0;margin:0;font-size:13px;line-height:1.3;font-weight:600;letter-spacing:0;color:#eae6ff}#nocAdsNote .x{flex:none;width:22px;height:22px;margin:-2px -4px 0 0;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#b7b3c7!important;font:400 17px/1 inherit;cursor:pointer}#nocAdsNote .x:hover{color:#eae6ff!important}#nocAdsNote .lead{margin:7px 0 0;color:#b7b3c7;font-size:12px}#nocAdsNote .actions{display:flex;gap:8px;margin-top:10px}#nocAdsNote .actions a,#nocAdsNote .actions button{flex:1;display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:30px;padding:8px 10px!important;border-radius:0!important;text-decoration:none!important;font:600 12px/1 inherit;cursor:pointer}#nocAdsNote .actions a,#nocAdsNote .actions .ok{background:#b8b0da!important;color:#14121c!important;border:0!important}#nocAdsNote .actions a:hover,#nocAdsNote .actions .ok:hover{background:#cdc4ff!important}#nocAdsNote .ghost{background:transparent!important;color:#eae6ff!important;border:1px solid rgba(184,176,218,.45)!important}#nocAdsNote input{width:100%;box-sizing:border-box;margin-top:9px;border-radius:0;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:#eae6ff;padding:8px 10px;font:inherit}#nocAdsNote .msg{margin-top:7px;font-size:12px;color:#b7b3c7}#nocAdsNote .msg:empty{display:none}#nocAdsNote .bar{position:absolute;left:0;bottom:0;width:100%;height:2px;background:#b8b0da;opacity:.7;transform-origin:left center;transition:transform .25s linear}@media (prefers-reduced-motion:reduce){#nocAdsNote,#nocAdsNote .bar{transition:none}}html.reduce-motion #nocAdsNote,html.reduce-motion #nocAdsNote .bar{transition:none}</style><script>(function(){try{window.addEventListener("message",function(ev){var d=ev.data||{};if(d.type!=="noc-upgrade"||typeof d.username!=="string")return;var hd={"Accept":"application/json","Content-Type":"application/json"};try{var t=localStorage.getItem("noc-session")||"";if(t)hd["X-Noc-Session"]=t;}catch(e){}fetch(location.origin+"/api/upgrade/request",{method:"POST",credentials:"include",cache:"no-store",headers:hd,body:JSON.stringify({username:d.username})}).then(function(r){return r.json().then(function(j){return {ok:r.ok,d:j};});}).then(function(res){if(ev.source)ev.source.postMessage({type:"noc-upgrade-result",ok:res.ok,status:res.d&&res.d.status,error:res.d&&res.d.error},ev.origin);}).catch(function(){if(ev.source)ev.source.postMessage({type:"noc-upgrade-result",ok:false,error:"Could not submit."},ev.origin);});});if(/(?:^|; )noc_ads_ack=1(?:;|$)/.test(document.cookie))return;try{if(window.parent!==window&&window.parent.location.hostname===location.hostname)return;}catch(e){}try{if(window.parent!==window){void window.parent.location.href;}}catch(e){if(location.search.indexOf("nocab=1")!==-1)return;}try{if(sessionStorage.getItem("noc-ads-note")==="off")return;}catch(e){}function paint(){if(!document.body||document.getElementById("nocAdsNote"))return;var LIFE=30000,left=LIFE,held=false,review=false,timer=0,last=0;var box=document.createElement("div");box.id="nocAdsNote";box.setAttribute("role","status");box.setAttribute("aria-labelledby","nocAdsTitle");var view=document.createElement("div");view.className="view";box.appendChild(view);var bar=document.createElement("div");bar.className="bar";box.appendChild(bar);function close(keep){if(box.classList.contains("out"))return;clearInterval(timer);if(keep){var sec=location.protocol==="https:"?"; Secure":"";document.cookie="noc_ads_ack=1; Path=/; Max-Age=31536000; SameSite=Lax"+sec;}else{try{sessionStorage.setItem("noc-ads-note","off");}catch(e){}}box.classList.remove("on");box.classList.add("out");setTimeout(function(){if(box.parentNode)box.remove();},400);}function tick(){var now=Date.now();var dt=now-last;last=now;if(held||review||document.hidden)return;left-=dt;bar.style.transform="scaleX("+Math.max(0,left/LIFE)+")";if(left<=0)close(false);}function headers(){var h={"Accept":"application/json"};try{var t=localStorage.getItem("noc-session")||"";if(t)h["X-Noc-Session"]=t;}catch(e){}return h;}function clear(){while(view.firstChild)view.removeChild(view.firstChild);}function closer(){var x=document.createElement("button");x.type="button";x.className="x";x.setAttribute("aria-label","Dismiss");x.textContent="\u00d7";x.addEventListener("click",function(){close(true);});return x;}function showMain(){review=false;clear();var top=document.createElement("div");top.className="top";var price=document.createElement("span");price.className="price";price.textContent="$5";var h=document.createElement("h2");h.id="nocAdsTitle";h.textContent="Nocturne runs on ads";top.appendChild(price);top.appendChild(h);top.appendChild(closer());var lead=document.createElement("p");lead.className="lead";lead.textContent="A click can open an ad behind this tab. Five dollars, once: ad-free, +250k tokens, Premium chat role and image sending.";var actions=document.createElement("div");actions.className="actions";var a=document.createElement("a");a.href="https://ko-fi.com/midnightsweat";a.target="_blank";a.rel="noopener noreferrer";a.textContent="Donate on Ko-fi";var donated=document.createElement("button");donated.type="button";donated.className="ghost";donated.textContent="I donated";donated.addEventListener("click",showReview);actions.appendChild(a);actions.appendChild(donated);view.appendChild(top);view.appendChild(lead);view.appendChild(actions);}function showReview(){review=true;clear();var top=document.createElement("div");top.className="top";var h=document.createElement("h2");h.id="nocAdsTitle";h.textContent="Submit your username";top.appendChild(h);top.appendChild(closer());var lead=document.createElement("p");lead.className="lead";lead.textContent="After review the upgrade is turned on for that account.";var input=document.createElement("input");input.type="text";input.maxLength="32";input.placeholder="Username";input.autocomplete="username";input.spellcheck=false;var msg=document.createElement("div");msg.className="msg";var actions=document.createElement("div");actions.className="actions";var back=document.createElement("button");back.type="button";back.className="ghost";back.textContent="Back";back.addEventListener("click",showMain);var send=document.createElement("button");send.type="button";send.className="ok";send.textContent="Submit";send.addEventListener("click",function(){var name=(input.value||"").trim();if(name.length<3){msg.textContent="Enter the account username.";return;}send.disabled=true;msg.textContent="Sending\u2026";var hd=headers();hd["Content-Type"]="application/json";fetch(location.origin+"/api/upgrade/request",{method:"POST",credentials:"include",cache:"no-store",headers:hd,body:JSON.stringify({username:name})}).then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});}).then(function(res){send.disabled=false;if(!res.ok){msg.textContent=(res.d&&res.d.error)||"Could not submit.";return;}if(res.d.status==="active"||res.d.status==="approved"){msg.textContent="That account already has the upgrade.";return;}msg.textContent="Submitted. It is in review.";input.disabled=true;send.disabled=true;}).catch(function(){send.disabled=false;msg.textContent="Could not submit.";});});actions.appendChild(back);actions.appendChild(send);view.appendChild(top);view.appendChild(lead);view.appendChild(input);view.appendChild(msg);view.appendChild(actions);var hd=headers();fetch(location.origin+"/api/auth/me",{credentials:"include",cache:"no-store",headers:hd}).then(function(r){return r.json();}).then(function(d){if(d&&d.user&&d.user.username){input.value=d.user.username;}}).catch(function(){});input.focus();}showMain();box.addEventListener("pointerenter",function(){held=true;});box.addEventListener("pointerleave",function(){held=false;});box.addEventListener("focusin",function(){held=true;});box.addEventListener("focusout",function(){held=false;});box.addEventListener("keydown",function(ev){if(ev.key==="Escape"){ev.preventDefault();close(true);}});document.body.appendChild(box);requestAnimationFrame(function(){requestAnimationFrame(function(){box.classList.add("on");last=Date.now();timer=setInterval(tick,250);});});}function go(){var h={"Accept":"application/json"};try{var t=localStorage.getItem("noc-session")||"";if(t)h["X-Noc-Session"]=t;}catch(e){}fetch(location.origin+"/api/ads/config",{credentials:"omit",cache:"no-store",headers:h}).then(function(r){return r.ok?r.json():{show:true};}).then(function(j){if(j&&j.show===false){try{sessionStorage.setItem("noc-ads-note","off");}catch(e){}return;}paint();}).catch(function(){paint();});}if(document.body)go();else document.addEventListener("DOMContentLoaded",go);}catch(e){}})();</script>
+<script>(function(){var w=window,s={ps:History.prototype.pushState,rs:History.prototype.replaceState};w.__lcHs=s;var h=history,f=function(){try{Object.defineProperty(h,'pushState',{value:s.ps.bind(h),configurable:!0,writable:!0}),Object.defineProperty(h,'replaceState',{value:s.rs.bind(h),configurable:!0,writable:!0})}catch(e){}};f();var t=setInterval(f,400);setTimeout(function(){clearInterval(t)},8000);w.addEventListener('pageshow',f);w.addEventListener('focus',f)})();</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69T9E59SM7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-69T9E59SM7');</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#060509">
+    <title>Nocturne - Settings</title>
+    <style>html,body{background:#060509;color:#ededf0;margin:0}</style>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230b0a14'/><circle cx='16' cy='16' r='9' fill='%23c9c1ff'/><circle cx='21' cy='14' r='8' fill='%230b0a14'/></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/css/global.css">
+    <link rel="stylesheet" href="/src/css/dock.css">
+    <link rel="stylesheet" href="/src/css/nocturne-select.css">
+    <link rel="stylesheet" href="/src/css/settings-page.css">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem("nocturne-bgfx") === "0") {
+                    var c = document.getElementById("bgCanvas");
+                    if (c) c.style.display = "none";
+                }
+                var t = localStorage.getItem("nocturne-bg-theme");
+                if (t && t !== "off") {
+                    try { localStorage.setItem("nocturne-bgfx", "1"); } catch (e) {}
+                }
+            } catch (e) {}
+        })();
+    </script>
+<link rel="stylesheet" href="/src/css/nocturne-glide.css">
+<!--nocturne-bg-inject--><style>#bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}#bgAurora{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s cubic-bezier(.22,.72,.14,1);filter:blur(44px);background:#05060d;will-change:transform,opacity;transform-origin:center center;backface-visibility:hidden}#bgAurora.active{opacity:1}#bgAurora.theme-aurora{background:radial-gradient(60% 50% at 18% 22%,rgba(155,218,176,.18),transparent 60%),radial-gradient(55% 50% at 82% 78%,rgba(149,200,224,.22),transparent 60%),radial-gradient(45% 40% at 62% 36%,rgba(184,176,218,.22),transparent 60%),#05060d;animation:nbgAur 36s cubic-bezier(.45,0,.55,1) infinite alternate}#bgAurora.theme-nebula{background:radial-gradient(70% 60% at 22% 28%,rgba(190,110,210,.24),transparent 60%),radial-gradient(60% 55% at 78% 72%,rgba(110,110,230,.26),transparent 60%),radial-gradient(48% 42% at 50% 50%,rgba(220,140,200,.14),transparent 60%),#05060d;animation:nbgNeb 48s cubic-bezier(.45,0,.55,1) infinite alternate}#bgAurora.theme-ocean{background:radial-gradient(65% 55% at 20% 25%,rgba(80,150,200,.26),transparent 60%),radial-gradient(55% 50% at 80% 75%,rgba(60,200,180,.22),transparent 60%),radial-gradient(45% 40% at 50% 55%,rgba(100,180,220,.18),transparent 60%),linear-gradient(180deg,#03060d 0%,#060d18 100%);animation:nbgOce 40s cubic-bezier(.45,0,.55,1) infinite alternate}#bgAurora.theme-sunset{background:radial-gradient(70% 60% at 22% 78%,rgba(232,130,102,.22),transparent 60%),radial-gradient(60% 55% at 78% 28%,rgba(186,96,138,.28),transparent 60%),radial-gradient(50% 45% at 50% 50%,rgba(220,150,132,.16),transparent 60%),linear-gradient(180deg,#0d0612 0%,#1c0a1a 100%);animation:nbgSun 44s cubic-bezier(.45,0,.55,1) infinite alternate}#bgAurora.theme-mono{background:radial-gradient(60% 50% at 30% 30%,rgba(200,200,222,.07),transparent 60%),radial-gradient(50% 45% at 70% 70%,rgba(180,180,210,.05),transparent 60%),linear-gradient(180deg,#0a0a10 0%,#050508 100%);animation:nbgMon 32s cubic-bezier(.45,0,.55,1) infinite alternate}#bgAurora.theme-embers{background:radial-gradient(45% 40% at 24% 72%,rgba(224,112,60,.18),transparent 60%),radial-gradient(40% 35% at 76% 28%,rgba(204,80,52,.16),transparent 60%),radial-gradient(35% 30% at 60% 60%,rgba(232,142,80,.10),transparent 60%),linear-gradient(180deg,#0a0508 0%,#08060d 100%);animation:nbgEmb 34s cubic-bezier(.45,0,.55,1) infinite alternate}@keyframes nbgAur{0%{background-position:0% 0%,100% 100%,50% 50%;transform:translate3d(0,0,0) scale(1)}100%{background-position:8% 4%,92% 96%,48% 52%;transform:translate3d(-.6%,.4%,0) scale(1.015)}}@keyframes nbgNeb{0%{transform:translate3d(0,0,0) scale(1) rotate(0deg)}100%{transform:translate3d(-.4%,.3%,0) scale(1.02) rotate(.6deg)}}@keyframes nbgOce{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-.8%,.5%,0) scale(1.018)}}@keyframes nbgSun{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(.4%,-.4%,0) scale(1.014)}}@keyframes nbgMon{0%{opacity:1;transform:scale(1)}100%{opacity:.86;transform:scale(1.01)}}@keyframes nbgEmb{0%{opacity:1;transform:translate3d(0,0,0) scale(1)}100%{opacity:.88;transform:translate3d(.3%,-.3%,0) scale(1.015)}}</style><script>(function(){try{var fstack=localStorage.getItem("nocturne-font-stack")||"";if(fstack){var fcss=localStorage.getItem("nocturne-font-css")||"";if(fcss&&!document.getElementById("nocFontLink")){var fl=document.createElement("link");fl.id="nocFontLink";fl.rel="stylesheet";fl.href="https://fonts.googleapis.com/css2?family="+fcss+"&display=swap";(document.head||document.documentElement).appendChild(fl)}document.documentElement.style.setProperty("--font",fstack)}var t=localStorage.getItem("nocturne-bg-theme")||"stars";var known=["aurora","nebula","ocean","sunset","mono","embers"];if(t!=="off"&&localStorage.getItem("nocturne-bgfx")==="0"){try{localStorage.setItem("nocturne-bgfx","1")}catch(e){}}function img(){var bimg=localStorage.getItem("nocturne-bg-image")||"";if(!bimg)return;var be=document.getElementById("__nocturneBg");if(!be){be=document.createElement("div");be.id="__nocturneBg";be.style.cssText="position:fixed;inset:0;z-index:0;pointer-events:none;background-position:center;background-size:cover;background-repeat:no-repeat;transition:opacity .2s,filter .2s";document.body.insertBefore(be,document.body.firstChild)}be.style.backgroundImage='url("'+bimg+'")';be.style.opacity=(parseInt(localStorage.getItem("nocturne-bg-opacity"),10)||100)/100;be.style.filter="blur("+(parseInt(localStorage.getItem("nocturne-bg-blur"),10)||0)+"px)"}function init(){img();var c=document.getElementById("bgCanvas");var fx=localStorage.getItem("nocturne-bgfx");if(t!=="off"&&fx==="0"){fx="1";try{localStorage.setItem("nocturne-bgfx","1")}catch(e){}}if(t==="off"){if(c)c.style.display="none";return}if(!c){c=document.createElement("canvas");c.id="bgCanvas";c.className="visible";document.body.insertBefore(c,document.body.firstChild)}c.style.display="";if(!document.querySelector('script[src^="/src/js/wz6714.js"]')){var s=document.createElement("script");s.src="/src/js/wz6714.js";s.defer=true;document.head.appendChild(s)}}if(document.body)init();else document.addEventListener("DOMContentLoaded",init)}catch(e){}})();</script><link rel="stylesheet" href="/src/css/island.css"><script src="/src/js/ph4529.js" defer></script></head>
+<body class="sp-page">
+
+<canvas id="bgCanvas" class="visible"></canvas>
+
+<div class="st-scroll" id="stScroll">
+    <div class="st-topbar" id="stTopbar">
+        <div class="st-topbar-inner">
+            <div class="st-crumb"><span class="st-crumb-root">Settings</span><span class="st-crumb-sep" aria-hidden="true">/</span><span class="st-crumb-cur" id="stCrumb">General</span></div>
+            <label class="st-search">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="search" id="stSearch" placeholder="Search settings" spellcheck="false" autocomplete="off" aria-label="Search settings">
+                <kbd class="st-kbd" aria-hidden="true">/</kbd>
+            </label>
+        </div>
+        <div class="st-progress" aria-hidden="true"><i id="stProgress"></i></div>
+    </div>
+
+    <div class="st-layout">
+        <nav class="st-nav" id="stNav" aria-label="Settings sections">
+            <div class="st-nav-list" data-glide-skip>
+                <a class="st-nav-link active" href="#st-general" data-target="st-general"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L3 7v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V7l-9-5z"/></svg><span>General</span></a>
+                <a class="st-nav-link" href="#st-appearance" data-target="st-appearance"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><span>Appearance</span></a>
+                <a class="st-nav-link" href="#st-search" data-target="st-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Search</span></a>
+                <a class="st-nav-link" href="#st-cover" data-target="st-cover"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><path d="M3 9h18"/></svg><span>Tab cover</span></a>
+                <a class="st-nav-link" href="#st-data" data-target="st-data"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg><span>Data</span></a>
+                <span class="st-nav-ind" id="stNavInd" aria-hidden="true"></span>
+            </div>
+        </nav>
+
+        <main class="st-main" id="stMain">
+            <header class="st-head">
+                <h1 class="st-title">Settings</h1>
+                <p class="st-sub">Search, tab cover, and privacy. Changes save on their own.</p>
+            </header>
+
+            <section class="st-section" id="st-general" data-title="General" aria-labelledby="st-general-h">
+                <header class="st-section-head">
+                    <h2 class="st-section-title" id="st-general-h">General</h2>
+                    <p class="st-section-desc">Ad blocking and how Nocturne reaches the web.</p>
+                </header>
+                <div class="st-group">
+                    <div class="st-row" data-keys="adblock ads blocker">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Block ads</div>
+                            <div class="st-row-desc">On for proxied pages. Turn it off if a site will not load.</div>
+                        </div>
+                        <div class="st-row-control"><label class="toggle"><input type="checkbox" id="adblockToggle" aria-label="Block ads" checked><span class="track"></span></label></div>
+                    </div>
+                    <div class="st-row" data-keys="routing wisp server proxy">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Routing</div>
+                            <div class="st-row-desc">Traffic goes over Wisp through Server 1 and Server 2.</div>
+                        </div>
+                        <div class="st-row-control"><span class="st-value on">Always on</span></div>
+                    </div>
+                    <div class="st-row" data-keys="api host backend server">
+                        <div class="st-row-text">
+                            <div class="st-row-name">API host</div>
+                            <div class="st-row-desc">The server this page talks to. Picked automatically.</div>
+                        </div>
+                        <div class="st-row-control"><span class="st-value">This server</span></div>
+                    </div>
+                </div>
+            </section>
+            <section class="st-section" id="st-appearance" data-title="Appearance" aria-labelledby="st-appearance-h">
+                <header class="st-section-head">
+                    <h2 class="st-section-title" id="st-appearance-h">Appearance</h2>
+                    <p class="st-section-desc">The starfall background and the accent color used across Nocturne.</p>
+                </header>
+                <div class="st-group">
+                    <div class="st-row" data-keys="starfall star rain stars light pillar background animation performance">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Starfall</div>
+                            <div class="st-row-desc">Gentle star rain: full, reduced, a still glow, or off. Changing it reloads the page.</div>
+                        </div>
+                        <div class="st-row-control"><select id="pillarMode" class="select" aria-label="Starfall">
+                                <option value="full">Full</option>
+                                <option value="reduced">Reduced</option>
+                                <option value="mesh">Still glow</option>
+                                <option value="off">Off</option>
+                            </select>
+                            <input type="checkbox" id="fxToggle" hidden></div>
+                    </div>
+                    <div class="st-row" data-keys="accent color theme">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Accent color</div>
+                            <div class="st-row-desc">Tints the wordmark, borders, and focus rings.</div>
+                        </div>
+                        <div class="st-row-control"><div class="swatch-row">
+                                <button class="swatch" type="button" data-color="#a898e8" style="background:#a898e8" title="Lavender (default)" aria-label="Lavender"></button>
+                                <button class="swatch" type="button" data-color="#82d0a4" style="background:#82d0a4" title="Mint" aria-label="Mint"></button>
+                                <button class="swatch" type="button" data-color="#d8b16a" style="background:#d8b16a" title="Amber" aria-label="Amber"></button>
+                                <button class="swatch" type="button" data-color="#d08282" style="background:#d08282" title="Coral" aria-label="Coral"></button>
+                                <button class="swatch" type="button" data-color="#88b8e0" style="background:#88b8e0" title="Sky" aria-label="Sky"></button>
+                                <button class="swatch" type="button" data-color="#c188e0" style="background:#c188e0" title="Orchid" aria-label="Orchid"></button>
+                                <input type="color" id="accentPicker" class="color-picker" title="Custom" aria-label="Custom accent color">
+                            </div></div>
+                    </div>
+                </div>
+            </section>
+            <section class="st-section" id="st-search" data-title="Search" aria-labelledby="st-search-h">
+                <header class="st-section-head">
+                    <h2 class="st-section-title" id="st-search-h">Search</h2>
+                    <p class="st-section-desc">What the home search bar uses.</p>
+                </header>
+                <div class="st-group">
+                    <div class="st-row" data-keys="search engine google duckduckgo bing">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Search engine</div>
+                            <div class="st-row-desc">Default engine for the home search bar.</div>
+                        </div>
+                        <div class="st-row-control"><select id="engineSelect" class="select" aria-label="Search engine"></select></div>
+                    </div>
+                </div>
+            </section>
+            <section class="st-section" id="st-cover" data-title="Tab cover" aria-labelledby="st-cover-h">
+                <header class="st-section-head">
+                    <h2 class="st-section-title" id="st-cover-h">Tab cover</h2>
+                    <p class="st-section-desc">Change how the tab looks, or move Nocturne into a decoy tab.</p>
+                </header>
+                <div class="st-group">
+                    <div class="st-row" data-keys="tab disguise cloak title icon">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Tab disguise</div>
+                            <div class="st-row-desc">Change the tab's title and icon.</div>
+                        </div>
+                        <div class="st-row-control"><select id="cloakSelect" class="select" aria-label="Tab disguise"></select></div>
+                    </div>
+                    <div class="st-row" data-keys="about blank cover decoy">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Open cover tab now</div>
+                            <div class="st-row-desc">Move Nocturne into a decoy tab and redirect this one.</div>
+                        </div>
+                        <div class="st-row-control"><button class="btn" id="aboutBlankBtn" type="button">Open</button></div>
+                    </div>
+                    <div class="st-row" data-keys="auto about blank cover decoy">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Auto cover tab</div>
+                            <div class="st-row-desc">On your next interaction, move Nocturne into a decoy tab and redirect this one.</div>
+                        </div>
+                        <div class="st-row-control"><label class="toggle"><input type="checkbox" id="autoAbToggle" aria-label="Auto cover tab"><span class="track"></span></label></div>
+                    </div>
+                </div>
+            </section>
+            <section class="st-section st-section-danger" id="st-data" data-title="Data" aria-labelledby="st-data-h">
+                <header class="st-section-head">
+                    <h2 class="st-section-title" id="st-data-h">Data</h2>
+                    <p class="st-section-desc">Everything here is stored on this device.</p>
+                </header>
+                <div class="st-group">
+                    <div class="st-row" data-keys="clear reset data delete">
+                        <div class="st-row-text">
+                            <div class="st-row-name">Clear data</div>
+                            <div class="st-row-desc">Removes saved tabs, bookmarks, and settings. You stay signed in.</div>
+                        </div>
+                        <div class="st-row-control"><button class="btn danger" id="resetAllBtn" type="button">Clear</button></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="st-empty" id="stEmpty" hidden>No settings match &ldquo;<span id="stEmptyQ"></span>&rdquo;.</div>
+
+            <footer class="st-foot">
+                <span class="st-foot-name">nocturne</span>
+                <nav class="st-foot-links" aria-label="Legal">
+                    <a href="/legal.html">Legal</a>
+                    <a href="/privacy.html">Privacy</a>
+                    <a href="https://discord.gg/eep35ceZus" target="_blank" rel="noopener noreferrer">Discord</a>
+                </nav>
+            </footer>
+        </main>
+    </div>
+</div>
+
+<!-- Sections hidden on purpose (settings were cut down to the list above). nk1873.js
+     wires every id in here without null checks, so they stay in the page. -->
+<div class="sp-shell sp-vault" hidden aria-hidden="true">
+
+    <aside class="sp-sidebar" aria-label="Settings categories">
+        <div class="sp-head">
+            <span class="sp-brand-mark"></span>
+            <div class="sp-head-text">
+                <span class="sp-head-title">Settings</span>
+                <span class="sp-head-sub">Nocturne</span>
+            </div>
+        </div>
+
+        <nav class="sp-nav" id="spNav" hidden>
+            <button class="sp-nav-item active" data-pane="appearance" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <span>Appearance</span>
+            </button>
+            <button class="sp-nav-item" data-pane="browse" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Browse</span>
+            </button>
+            <button class="sp-nav-item" data-pane="history" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l3 2"/></svg>
+                <span>History</span>
+            </button>
+            <button class="sp-nav-item" data-pane="engine" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V7l-9-5z"/></svg>
+                <span>Engine</span>
+            </button>
+            <button class="sp-nav-item" data-pane="advanced" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                <span>Advanced</span>
+            </button>
+            <button class="sp-nav-item" data-pane="performance" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0"/><line x1="12" y1="12" x2="8" y2="8"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
+                <span>Performance</span>
+            </button>
+            <button class="sp-nav-item sp-nav-danger" data-pane="recovery" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                <span>Recovery</span>
+            </button>
+            <button class="sp-nav-item" data-pane="about" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <span>About</span>
+            </button>
+        </nav>
+
+        <div class="sp-sidebar-foot">
+            <a href="/" class="sp-back">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Nocturne
+            </a>
+            <div class="sp-version">v2.0.0</div>
+        </div>
+    </aside>
+
+    <main class="sp-main">
+
+        <section class="sp-pane active" data-pane="appearance" aria-labelledby="paneAppearanceTitle">
+            <header class="sp-pane-head">
+                <h1 id="paneAppearanceTitle" class="sp-pane-title">Settings</h1>
+                <p class="sp-pane-sub">Search, tab cover, and privacy.</p>
+            </header>
+
+            <div class="sp-card">
+                <div class="sp-card-head">
+                    <h2 class="sp-card-title">Backend</h2>
+                    <p class="sp-card-sub">The host this page is using.</p>
+                </div>
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">API host</div>
+                        <div class="row-desc">Using this server (auto).</div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="sp-card">
+                <div class="sp-card-head">
+                    <h2 class="sp-card-title">Appearance</h2>
+                    <p class="sp-card-sub">Starfall, or a still background, and the accent color.</p>
+                </div>
+
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Background</div>
+                        <div class="row-desc">Choose the starfall or a lightweight static background.</div>
+                    </div>
+                    <div class="row-control">
+                        <select id="bgThemeSelect" class="select"></select>
+                    </div>
+                </div>
+
+                
+
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Custom background image</div>
+                        <div class="row-desc">Layered on top of the palette. Stored locally, max 5 MB.</div>
+                    </div>
+                    <div class="row-control row-control-stack">
+                        <div class="bg-preview" id="bgPreview"></div>
+                        <div class="row-actions">
+                            <input type="file" id="bgUploadInput" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none">
+                            <button class="btn" id="bgUploadBtn">Choose image…</button>
+                            <button class="btn ghost" id="bgClearBtn">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Background opacity</div>
+                        <div class="row-desc">Applies to your custom image.</div>
+                    </div>
+                    <div class="row-control">
+                        <input type="range" id="bgOpacityRange" min="0" max="100" step="5" class="range">
+                        <span class="range-val" id="bgOpacityVal">100%</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Background blur</div>
+                        <div class="row-desc">Soft-focus your custom image.</div>
+                    </div>
+                    <div class="row-control">
+                        <input type="range" id="bgBlurRange" min="0" max="40" step="2" class="range">
+                        <span class="range-val" id="bgBlurVal">0px</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sp-card">
+                <div class="sp-card-head">
+                    <h2 class="sp-card-title">Theme</h2>
+                    <p class="sp-card-sub">Accent color, scaling, and motion preferences.</p>
+                </div>
+
+                
+
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Font</div>
+                        <div class="row-desc">Pick the typeface used across Nocturne (loaded from Google Fonts).</div>
+                    </div>
+                    <div class="row-control">
+                        <select id="fontSelect" class="select"></select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">UI scale</div>
+                        <div class="row-desc">Make Nocturne's UI bigger or smaller.</div>
+                    </div>
+                    <div class="row-control">
+                        <input type="range" id="scaleRange" min="80" max="130" step="5" class="range">
+                        <span class="range-val" id="scaleVal">100%</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Reduce animations</div>
+                        <div class="row-desc">Disable transitions and motion effects.</div>
+                    </div>
+                    <div class="row-control">
+                        <label class="toggle"><input type="checkbox" id="reduceMotionToggle"><span class="track"></span></label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sp-pane" data-pane="browse" aria-labelledby="paneBrowseTitle">
+            <header class="sp-pane-head">
+                <h1 id="paneBrowseTitle" class="sp-pane-title">Browse</h1>
+                <p class="sp-pane-sub">Default search engine, tab appearance, and how URLs are entered.</p>
+            </header>
+
+            <div class="sp-card">
+                
+
+
+                
+
+                
+
+                
+            </div>
+
+            <div class="sp-card">
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Flood history with educational sites</div>
+                        <div class="row-desc">Quickly visits the sites below in a pop-up so your recent browser history fills up with school-friendly pages. Add or remove sites to taste.</div>
+                    </div>
+                    <div class="row-control">
+                        <button class="btn" id="floodBtn" type="button">Flood now</button>
+                    </div>
+                </div>
+
+                <div class="sp-flood">
+                    <div class="sp-flood-add">
+                        <input type="text" id="floodInput" placeholder="khanacademy.org" spellcheck="false" autocomplete="off" autocapitalize="off">
+                        <button class="btn" id="floodAdd" type="button">Add</button>
+                    </div>
+                    <div id="floodList" class="sp-flood-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sp-pane" data-pane="history" aria-labelledby="paneHistoryTitle">
+            <header class="sp-pane-head">
+                <h1 id="paneHistoryTitle" class="sp-pane-title">History</h1>
+                <p class="sp-pane-sub">Pages you have opened through Nocturne. Stored on this device.</p>
+            </header>
+
+            <div class="sp-card">
+                <div class="sp-hist-bar">
+                    <div class="sp-hist-search-wrap">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" id="histSearch" placeholder="Search history" spellcheck="false" autocomplete="off">
+                    </div>
+                    <button class="btn sp-hist-clear" id="histClear" type="button">Clear all</button>
+                </div>
+                <div id="histList" class="sp-hist-list"></div>
+                <div id="histEmpty" class="sp-hist-empty">No history yet. Pages you visit will show up here.</div>
+            </div>
+        </section>
+
+        <section class="sp-pane" data-pane="engine" aria-labelledby="paneEngineTitle">
+            <header class="sp-pane-head">
+                <h1 id="paneEngineTitle" class="sp-pane-title">Engine</h1>
+                <p class="sp-pane-sub">Choose the engine Nocturne uses to load sites — compare the trade-offs, then switch anytime.</p>
+            </header>
+
+            <div class="sp-card">
+                <div class="engine-grid">
+                    <div class="engine-opt" data-engine="exp">
+                        <div class="engine-top">
+                            <div class="engine-name">Experimental <span class="engine-tag">Default</span></div>
+                        </div>
+                        <div class="engine-meta">Modern rendering engine</div>
+                        <ul class="engine-list pros">
+                            <li>Loads complex modern sites (Spotify, web apps, more)</li>
+                            <li>Actively developed</li>
+                            <li>Best compatibility with modern web</li>
+                        </ul>
+                        <ul class="engine-list cons">
+                            <li>Some sites may load or behave unexpectedly</li>
+                        </ul>
+                        <div class="engine-foot" data-foot="exp"></div>
+                    </div>
+                    <div class="engine-opt" data-engine="std">
+                        <div class="engine-top">
+                            <div class="engine-name">Standard <span class="engine-tag beta">Legacy</span></div>
+                        </div>
+                        <div class="engine-meta">Classic rendering mode</div>
+                        <ul class="engine-list pros">
+                            <li>Fast and stable</li>
+                            <li>Works on the large majority of sites</li>
+                            <li>Reliable fallback</li>
+                        </ul>
+                        <ul class="engine-list cons">
+                            <li>A few modern apps (Spotify, some web apps) may not fully load</li>
+                            <li>If something breaks, try switching to Experimental</li>
+                        </ul>
+                        <div class="engine-foot" data-foot="std"></div>
+                    </div>
+                </div>
+                <div class="engine-confirm" id="engineConfirm">
+                    <div class="engine-confirm-text" id="engineConfirmText"></div>
+                    <div class="engine-confirm-row">
+                        <button type="button" class="btn ghost" id="engineCancel">Cancel</button>
+                        <button type="button" class="btn" id="engineGo">Switch &amp; reload</button>
+                    </div>
+                </div>
+            </div>
+            <script>(function(){try{var cur=localStorage.getItem("view-mode")==="std"?"std":"exp";var names={std:"Standard",exp:"Experimental"};var pending=null;var bar=document.getElementById("engineConfirm");var txt=document.getElementById("engineConfirmText");function render(){["std","exp"].forEach(function(eng){var opt=document.querySelector('.engine-opt[data-engine="'+eng+'"]');var foot=document.querySelector('.engine-foot[data-foot="'+eng+'"]');if(!opt||!foot)return;if(eng===cur){opt.classList.add("is-current");foot.innerHTML='<span class="engine-cur">● Currently active</span>';}else{opt.classList.remove("is-current");foot.innerHTML='<button type="button" class="btn engine-switch" data-switch="'+eng+'">Switch to '+names[eng]+'</button>';}});}var grid=document.querySelector(".engine-grid");if(grid){grid.addEventListener("click",function(e){var b=e.target.closest("[data-switch]");if(!b)return;pending=b.getAttribute("data-switch")==="exp"?"exp":"std";txt.textContent="Switch to "+names[pending]+"? This clears the current mode's caches and stored site cookies, then reloads - you'll be signed out of sites you opened here. You can switch back anytime if a site doesn't work.";bar.classList.add("show");});}document.getElementById("engineCancel").addEventListener("click",function(){pending=null;bar.classList.remove("show");});document.getElementById("engineGo").addEventListener("click",async function(){if(!pending)return;var go=this;try{go.disabled=true;go.textContent="Switching…";}catch(e){}try{localStorage.setItem("view-mode",pending);localStorage.setItem("nocturne-reset","true");localStorage.setItem("view-switch","true");}catch(e){}try{if(navigator.serviceWorker){var regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(function(r){return r.unregister().catch(function(){});}));}}catch(e){}try{if(self.caches&&caches.keys){var cks=await caches.keys();await Promise.all(cks.map(function(k){return caches.delete(k).catch(function(){});}));}}catch(e){}var target="/?mode="+pending+"&_="+Date.now();var w=window;try{if(window.top&&window.top!==window)w=window.top;}catch(e){w=window;}try{w.location.replace(target);}catch(e){window.location.replace(target);}});render();}catch(e){}})();</script>
+        </section>
+
+        <section class="sp-pane" data-pane="advanced" aria-labelledby="paneAdvancedTitle">
+            <header class="sp-pane-head">
+                <h1 id="paneAdvancedTitle" class="sp-pane-title">Advanced</h1>
+                <p class="sp-pane-sub">Diagnostics for power users.</p>
+            </header>
+
+            <div class="sp-card">
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Debug overlay</div>
+                        <div class="row-desc">Show engine diagnostics on screen.</div>
+                    </div>
+                    <div class="row-control">
+                        <label class="toggle"><input type="checkbox" id="debugToggle"><span class="track"></span></label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sp-pane" data-pane="performance" aria-labelledby="panePerformanceTitle">
+            <header class="sp-pane-head">
+                <h1 id="panePerformanceTitle" class="sp-pane-title">Performance</h1>
+                <p class="sp-pane-sub">Control how ads behave. Ads help keep Nocturne free.</p>
+            </header>
+
+            <div class="sp-card">
+                <div class="sp-card-head">
+                    <h2 class="sp-card-title">Ads</h2>
+                    <p class="sp-card-sub">Ads support Nocturne. You can adjust how often they appear.</p>
+                </div>
+
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Ad frequency</div>
+                        <div class="row-desc">Minimum time between ads after a click. Max is every 10 minutes.</div>
+                    </div>
+                    <div class="row-control">
+                        <input type="range" id="adCooldownRange" min="1" max="10" step="1" class="range">
+                        <span class="range-val" id="adCooldownVal">2 min</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sp-pane" data-pane="recovery" aria-labelledby="paneRecoveryTitle">
+            <header class="sp-pane-head">
+                <h1 id="paneRecoveryTitle" class="sp-pane-title">Recovery</h1>
+                <p class="sp-pane-sub">Reset things if something gets stuck.</p>
+            </header>
+
+            <div class="sp-card sp-card-danger">
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">Reset engine</div>
+                        <div class="row-desc">Clears the active session state. Reloads the page.</div>
+                    </div>
+                    <div class="row-control">
+                        <button class="btn" id="resetEngineBtn">Reset engine</button>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="sp-pane" data-pane="about" aria-labelledby="paneAboutTitle">
+            <header class="sp-pane-head">
+                <h1 id="paneAboutTitle" class="sp-pane-title">About</h1>
+                <p class="sp-pane-sub"></p>
+            </header>
+
+            <div class="sp-card">
+                <div class="row">
+                    <div class="row-label"><div class="row-name">Version</div></div>
+                    <div class="row-control"><strong>2.0.0</strong></div>
+                </div>
+                <div class="row">
+                    <div class="row-label"><div class="row-name">Main builder</div></div>
+                    <div class="row-control"><strong>midnightsweat</strong></div>
+                </div>
+                <div class="row">
+                    <div class="row-label"><div class="row-name">Community</div></div>
+                    <div class="row-control">
+                        <a class="btn" href="https://discord.gg/eep35ceZus" target="_blank" rel="noopener noreferrer">Discord</a>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="sp-section-title">Security</h2>
+            <div class="sp-card">
+                <div class="row">
+                    <div class="row-label">
+                        <div class="row-name">DDoS protection</div>
+                        <div class="row-desc">Browser verification status for this session.</div>
+                    </div>
+                    <div class="row-control">
+                        <span class="verify-badge" id="verifyBadge"><span class="verify-dot"></span><span id="verifyText">Checking</span></span>
+                    </div>
+                </div>
+            </div>
+            <script>(function(){try{var ok=/(?:^|; *)nf_pass=/.test(document.cookie);var b=document.getElementById("verifyBadge"),t=document.getElementById("verifyText");if(b&&t){if(ok){b.classList.add("ok");t.textContent="Passed";}else{t.textContent="Not verified";}}}catch(e){}})();</script>
+
+            <h2 class="sp-section-title">Credits</h2>
+            <div class="sp-card">
+                <div class="row">
+                    <div class="row-label"><div class="row-name">Engine</div></div>
+                    <div class="row-control"><strong>Nocturne</strong></div>
+                </div>
+                <div class="row">
+                    <div class="row-label"><div class="row-name">Game library</div></div>
+                    <div class="row-control"><strong>luminsdk, and gnmath</strong></div>
+                </div>
+            </div>
+
+            <h2 class="sp-section-title">Tech stack</h2>
+            <div class="sp-card">
+                <div class="row">
+                    <div class="row-label"><div class="row-name">Runtime</div></div>
+                    <div class="row-control"><strong>Node.js · Express</strong></div>
+                </div>
+                <div class="row">
+                    <div class="row-label"><div class="row-name">Frontend</div></div>
+                    <div class="row-control"><strong>Vanilla JS · CSS</strong></div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+    
+
+</div>
+
+<nav id="dock"></nav>
+<script src="/src/js/lr2815.js" defer></script>
+<script src="/src/js/qt3674.js" defer></script>
+
+<script src="/src/js/wz6714.js" defer></script>
+<script src="/src/js/ie7331.js" defer></script>
+<script>
+(function () {
+    var adToggle = document.getElementById("adblockToggle");
+    try { adToggle.checked = localStorage.getItem("nocturne-adblock") !== "0"; } catch (e) { adToggle.checked = true; }
+    adToggle.addEventListener("change", function () {
+        try { localStorage.setItem("nocturne-adblock", adToggle.checked ? "1" : "0"); } catch (e) {}
+        try {
+            if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({ type: "nocturne-adblock", on: adToggle.checked });
+            }
+        } catch (e) {}
+    });
+
+    var pillar = document.getElementById("pillarMode");
+    function pillarNow() {
+        var m = "full";
+        try { m = localStorage.getItem("nocturne-pillar") || (localStorage.getItem("nocturne-bgfx") === "0" ? "off" : "full"); } catch (e) {}
+        if (m !== "full" && m !== "reduced" && m !== "mesh" && m !== "off") m = "full";
+        return m;
+    }
+    pillar.value = pillarNow();
+    pillar.addEventListener("change", function () {
+        var m = pillar.value;
+        try {
+            localStorage.setItem("nocturne-pillar", m);
+            localStorage.setItem("nocturne-bgfx", m === "off" ? "0" : "1");
+        } catch (e) {}
+        var fx = document.getElementById("fxToggle");
+        if (fx) fx.checked = m !== "off";
+        location.reload();
+    });
+})();
+
+// Layout: scroll-spy nav with a sliding indicator, eased jumps, sections that rise in
+// as they scroll into view, and a filter box. Everything still works without motion.
+(function () {
+    var scroller = document.getElementById("stScroll");
+    var topbar = document.getElementById("stTopbar");
+    var list = document.querySelector(".st-nav-list");
+    var ind = document.getElementById("stNavInd");
+    var crumb = document.getElementById("stCrumb");
+    var progress = document.getElementById("stProgress");
+    var links = [].slice.call(document.querySelectorAll(".st-nav-link"));
+    var sections = [].slice.call(document.querySelectorAll(".st-section"));
+    var root = document.documentElement;
+
+    function reduced() {
+        if (root.classList.contains("reduce-motion") || root.classList.contains("perf-min")) return true;
+        try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return false; }
+    }
+
+    document.body.classList.add("st-js");
+
+    // reveal on scroll
+    if (reduced() || !("IntersectionObserver" in window)) {
+        sections.forEach(function (s) { s.classList.add("in"); });
+    } else {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+                if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+            });
+        }, { root: scroller, rootMargin: "0px 0px -8% 0px", threshold: 0.04 });
+        sections.forEach(function (s, i) { s.style.setProperty("--st-i", i); io.observe(s); });
+    }
+
+    // pinned: the section a nav click asked for. It stays highlighted even when the
+    // page bottoms out before that section reaches the top, until the user scrolls.
+    var current = null, lockUntil = 0, pinned = null;
+    function placeIndicator(link) {
+        if (!link || !ind) return;
+        ind.style.setProperty("--x", link.offsetLeft + "px");
+        ind.style.setProperty("--y", link.offsetTop + "px");
+        ind.style.setProperty("--w", link.offsetWidth + "px");
+        ind.style.setProperty("--h", link.offsetHeight + "px");
+        ind.classList.add("on");
+    }
+    function setActive(id) {
+        if (id === current) return;
+        current = id;
+        var link = null;
+        links.forEach(function (l) {
+            var on = l.getAttribute("data-target") === id;
+            l.classList.toggle("active", on);
+            if (on) { l.setAttribute("aria-current", "true"); link = l; } else l.removeAttribute("aria-current");
+        });
+        placeIndicator(link);
+        var sec = document.getElementById(id);
+        if (crumb && sec) crumb.textContent = sec.getAttribute("data-title") || "";
+        // phones: keep the active tab visible in the horizontal strip
+        if (link && list.scrollWidth > list.clientWidth + 1) {
+            var left = link.offsetLeft - (list.clientWidth - link.offsetWidth) / 2;
+            try { list.scrollTo({ left: left, behavior: reduced() ? "auto" : "smooth" }); } catch (e) { list.scrollLeft = left; }
+        }
+    }
+
+    function offset() { return topbar.offsetHeight + 18; }
+    function visibleSections() { return sections.filter(function (s) { return !s.hidden; }); }
+
+    function spy() {
+        var top = scroller.scrollTop, max = scroller.scrollHeight - scroller.clientHeight;
+        if (progress) progress.style.transform = "scaleX(" + (max > 0 ? Math.min(1, top / max) : 0) + ")";
+        topbar.classList.toggle("scrolled", top > 4);
+        if (Date.now() < lockUntil) return;
+        if (pinned) { setActive(pinned); return; }
+        var vis = visibleSections();
+        if (!vis.length) return;
+        var pick = vis[0];
+        if (max > 0 && top >= max - 2) pick = vis[vis.length - 1];
+        else {
+            var line = top + offset() + scroller.clientHeight * 0.25;
+            vis.forEach(function (s) { if (s.offsetTop <= line) pick = s; });
+        }
+        setActive(pick.id);
+    }
+    var ticking = false;
+    scroller.addEventListener("scroll", function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () { ticking = false; spy(); });
+    }, { passive: true });
+
+    var anim = 0;
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function scrollToSection(sec) {
+        var max = scroller.scrollHeight - scroller.clientHeight;
+        var first = visibleSections()[0] === sec;
+        var to = first ? 0 : Math.max(0, Math.min(max, sec.offsetTop - offset()));
+        var from = scroller.scrollTop, dist = to - from;
+        cancelAnimationFrame(anim);
+        pinned = sec.id;
+        setActive(sec.id);
+        if (reduced() || Math.abs(dist) < 2) { scroller.scrollTop = to; return; }
+        var dur = Math.min(720, Math.max(320, Math.abs(dist) * 0.45)), t0 = performance.now();
+        lockUntil = Date.now() + dur + 80;
+        (function step(now) {
+            var t = Math.min(1, (now - t0) / dur);
+            scroller.scrollTop = from + dist * ease(t);
+            if (t < 1) anim = requestAnimationFrame(step);
+        })(t0);
+    }
+    // a wheel or touch takes over from a running jump
+    function release() { cancelAnimationFrame(anim); lockUntil = 0; pinned = null; }
+    ["wheel", "touchstart"].forEach(function (ev) { scroller.addEventListener(ev, release, { passive: true }); });
+    // dragging the scrollbar itself
+    scroller.addEventListener("mousedown", function (e) { if (e.target === scroller) release(); });
+    document.addEventListener("keydown", function (e) {
+        if (/^(Arrow(Up|Down)|Page(Up|Down)|Home|End| )$/.test(e.key) && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) release();
+    });
+
+    links.forEach(function (l) {
+        l.addEventListener("click", function (e) {
+            e.preventDefault();
+            var sec = document.getElementById(l.getAttribute("data-target"));
+            if (sec && !sec.hidden) scrollToSection(sec);
+        });
+    });
+
+    // filter
+    var search = document.getElementById("stSearch");
+    var empty = document.getElementById("stEmpty");
+    var emptyQ = document.getElementById("stEmptyQ");
+    var rows = [].slice.call(document.querySelectorAll(".st-row"));
+    rows.forEach(function (r) {
+        r._hay = (r.textContent + " " + (r.getAttribute("data-keys") || "")).toLowerCase().replace(/\s+/g, " ");
+    });
+    function filter() {
+        var q = search.value.trim().toLowerCase();
+        var words = q ? q.split(/\s+/) : [];
+        var any = false;
+        rows.forEach(function (r) {
+            var hit = words.every(function (w) { return r._hay.indexOf(w) !== -1; });
+            r.hidden = !hit;
+        });
+        sections.forEach(function (s) {
+            var has = !!s.querySelector(".st-row:not([hidden])");
+            s.hidden = !has;
+            if (has) { any = true; s.classList.add("in"); }
+            var link = document.querySelector('.st-nav-link[data-target="' + s.id + '"]');
+            if (link) link.classList.toggle("dim", !has);
+        });
+        document.body.classList.toggle("st-filtering", !!q);
+        empty.hidden = any;
+        emptyQ.textContent = q;
+        current = null;
+        pinned = null;
+        scroller.scrollTop = 0;
+        spy();
+    }
+    search.addEventListener("input", filter);
+    search.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && search.value) { e.stopPropagation(); search.value = ""; filter(); }
+    });
+    document.addEventListener("keydown", function (e) {
+        if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
+        var t = e.target, tag = t && t.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (t && t.isContentEditable)) return;
+        e.preventDefault();
+        search.focus();
+    });
+
+    window.addEventListener("resize", function () {
+        var link = document.querySelector(".st-nav-link.active");
+        placeIndicator(link);
+    });
+    setActive(sections[0].id);
+    spy();
+    // let the indicator glide only after its first placement
+    requestAnimationFrame(function () { requestAnimationFrame(function () { list.classList.add("ready"); }); });
+    // fonts can shift link sizes after first paint
+    try { document.fonts && document.fonts.ready.then(function () { placeIndicator(document.querySelector(".st-nav-link.active")); }); } catch (e) {}
+})();
+</script>
+<script src="/src/js/nk1873.js" defer></script>
+
+<script src="/src/js/pu3927.js?v=20260929-2" defer></script>
+<script src="/src/js/gd4170.js" defer></script>
+<script src="/src/js/email-nudge.js?v=1" defer></script>
+</body>
+</html>

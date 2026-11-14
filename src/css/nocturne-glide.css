@@ -1,0 +1,37 @@
+:root {
+    --glide-color: rgba(255, 255, 255, 0.06);
+    --glide-duration: 220ms;
+    --glide-ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.noc-glide {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    z-index: 2147483000;
+    pointer-events: none;
+    background: var(--glide-color);
+    opacity: 0;
+    transition:
+        transform var(--glide-duration) var(--glide-ease),
+        width var(--glide-duration) var(--glide-ease),
+        height var(--glide-duration) var(--glide-ease),
+        clip-path var(--glide-duration) var(--glide-ease),
+        opacity 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .noc-glide-on .think-level .tl-seg:not(.active):hover { background: none; }
+    .noc-glide-on .gif-tabs .gif-tab:not(.active):hover { background: transparent; }
+    .noc-glide-on .yt-chips .yt-chip:not(.active):hover { background: rgba(255, 255, 255, 0.06); }
+    .noc-glide-on .yt-library-tabs .yt-library-tab:not(.active):hover { background: rgba(255, 255, 255, 0.06); }
+    .noc-glide-on .yt-filter-dropdown .yt-filter-option:hover { background: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .noc-glide { transition-duration: 0ms, 0ms, 0ms, 0ms, 150ms; }
+}
+.reduce-motion .noc-glide,
+.perf-min .noc-glide { transition-duration: 0ms, 0ms, 0ms, 0ms, 150ms; }

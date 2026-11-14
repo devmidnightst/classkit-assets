@@ -1,0 +1,3 @@
+# classkit assets
+
+Static assets.
