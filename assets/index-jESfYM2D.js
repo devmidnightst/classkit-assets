@@ -1,0 +1,1 @@
+document.write("<script src=\"/src/js/wz6714.js\" defer></script>");
