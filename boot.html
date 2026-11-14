@@ -54,27 +54,30 @@ html,body{margin:0;height:100%;background:#060509;color:#ededf0;font:14px/1.5 sy
     function warm(worker) {
         return new Promise(function (done) {
             var bar = document.getElementById("b"), fill = document.getElementById("f"), count = document.getElementById("c");
-            // Hold the loader on screen at least this long so the count is readable
-            // even when every file is already cached and the fetch is instant.
-            var start = Date.now(), MIN = 650;
-            var finished = false, quiet = setTimeout(end, 2500), cap = setTimeout(end, 15000);
+            // No artificial delay: hand off the moment the files are ready. The
+            // bar/counter only appear if loading is actually taking a beat, so a
+            // cached visit (everything already there) flies straight through with
+            // no visible loader, while a cold/slow visit shows the count ticking.
+            var finished = false, last = { done: 0, total: 0 }, shown = false;
+            var reveal = setTimeout(function () { shown = true; bar.className = "on"; count.className = "on"; paint(); }, 180);
+            var quiet = setTimeout(end, 2500), cap = setTimeout(end, 15000);
+            function paint() {
+                if (!shown || !last.total) return;
+                fill.style.transform = "scaleX(" + Math.min(1, last.done / last.total) + ")";
+                count.textContent = Math.min(last.done, last.total) + " / " + last.total + " assets";
+            }
             function end() {
                 if (finished) return;
-                finished = true; clearTimeout(quiet); clearTimeout(cap);
-                setTimeout(done, Math.max(0, MIN - (Date.now() - start)));
+                finished = true; clearTimeout(quiet); clearTimeout(cap); clearTimeout(reveal);
+                done();
             }
             try {
                 var ch = new MessageChannel();
                 ch.port1.onmessage = function (e) {
                     var d = e.data || {};
                     clearTimeout(quiet);
-                    if (d.total) {
-                        bar.className = "on";
-                        fill.style.transform = "scaleX(" + Math.min(1, d.done / d.total) + ")";
-                        count.textContent = Math.min(d.done, d.total) + " / " + d.total + " assets";
-                        count.className = "on";
-                    }
-                    if (d.ready) setTimeout(end, 150);
+                    if (d.total) { last = d; paint(); }
+                    if (d.ready) end();
                 };
                 worker.postMessage({ type: "vo-warm" }, [ch.port2]);
             } catch (e) { end(); }
