@@ -11,6 +11,9 @@
     var PAGES = new Set(["404.html","about.html","account.html","ai.html","api.html","application.html","apps.html","box-term.html","chat.html","code.html","console.html","decoy.html","dmca.html","films.html","games.html","index.html","landing.html","learn.html","legal.html","linkcheck.html","music.html","onboarding.html","privacy.html","screenshare.html","settings.html","support.html","terms.html","tools.html","vms.html","voice.html","youtube.html"]);
     var TABS = new Set(["games.html","apps.html","chat.html","ai.html","films.html","music.html","tools.html","code.html","youtube.html","settings.html","account.html","privacy.html","terms.html","dmca.html","legal.html","linkcheck.html","vms.html","voice.html","support.html","about.html","api.html","admin.html","console.html","box-term.html"]);
     var SLUGS = {"games":"games.html","g":"games.html","apps":"apps.html","chat":"chat.html","vms":"vms.html","vm":"vms.html","ai":"ai.html","movies":"films.html","films":"films.html","music":"music.html","tools":"tools.html","code":"code.html","editor":"code.html","youtube":"youtube.html","yt":"youtube.html","api":"api.html","settings":"settings.html","account":"account.html","privacy":"privacy.html","terms":"terms.html","dmca":"dmca.html","legal":"legal.html","linkcheck":"linkcheck.html","links":"linkcheck.html","admin":"admin.html","god":"admin.html","cp":"admin.html","panel":"admin.html","voice":"voice.html","support":"support.html","about":"about.html","console":"console.html","terminal":"box-term.html","box-term":"box-term.html"};
+    // What the home page needs to paint and start. The loader page has the
+    // worker fetch these before it swaps the page in.
+    var CORE = ["/index.html","/app/main.mjs","/app/runtime/engine.mjs","/app/modules/io/index.mjs","/edu/res/rt.js","/edu/core/controller.api.js","/edu/res/rt.wasm","/assets/index-dJRdNNVp.js","/assets/index-lPGs8OUB.js","/src/js/lr2815.js","/src/js/qt3674.js","/src/js/wz6714.js","/src/js/ie7331.js","/src/js/be9460.js","/src/js/kf2093.js","/src/js/rw8034.js","/src/js/hq3852.js","/src/js/pu3927.js","/src/js/gd4170.js","/src/js/email-nudge.js","/src/css/global.css","/src/css/atmosphere.css","/src/css/home.css","/src/css/toolbar.css","/src/css/sidebar.css","/src/css/loader.css","/src/css/nocturne-select.css","/src/css/frame.css","/src/css/error.css","/src/css/dock.css","/src/css/settings.css","/src/css/notice.css","/src/css/weather.css","/app/modules/core/core.js","/app/modules/net/index.mjs","/src/js/xr4817.js","/src/lib/an4426.js","/src/js/mo3318.js","/src/js/tb7316.js","/src/js/df5162.js","/src/css/nocturne-glide.css","/src/css/island.css","/src/js/ph4529.js"];
     var CACHE = "vo-" + C.v;
     var JS = "application/javascript; charset=utf-8";
     var TYPES = {
@@ -184,6 +187,29 @@
                 return k.indexOf("vo-") === 0 && k !== CACHE ? caches.delete(k) : null;
             }));
         }).catch(function () {}));
+    });
+    add("message", function (e) {
+        if (!e.data || e.data.type !== "vo-warm" || !e.ports || !e.ports[0]) return;
+        var port = e.ports[0], total = CORE.length, done = 0, next = 0;
+        function say(extra) {
+            var msg = { done: done, total: total };
+            if (extra) msg.ready = true;
+            try { port.postMessage(msg); } catch (err) {}
+        }
+        function lane() {
+            if (next >= total) return Promise.resolve();
+            var path = CORE[next++];
+            // Reading the body is what makes the copy land in the cache.
+            return fromCdn(path).then(function (r) { return r.arrayBuffer(); }).catch(function () {}).then(function () {
+                done++; say(false);
+                return lane();
+            });
+        }
+        say(false);
+        var lanes = [];
+        for (var i = 0; i < 6; i++) lanes.push(lane());
+        var all = Promise.all(lanes).then(function () { say(true); });
+        if (e.waitUntil) e.waitUntil(all);
     });
     add("message", function (e) {
         if (e.data && e.data.type === "vo-version" && e.ports && e.ports[0]) e.ports[0].postMessage({ v: C.v });
