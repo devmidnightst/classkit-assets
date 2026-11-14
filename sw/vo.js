@@ -15,6 +15,7 @@
     // worker fetch these before it swaps the page in.
     var CORE = ["/index.html","/app/main.mjs","/app/runtime/engine.mjs","/assets/index-dJRdNNVp.js","/assets/index-lPGs8OUB.js","/src/js/lr2815.js","/src/js/qt3674.js","/src/js/wz6714.js","/src/js/ie7331.js","/src/js/be9460.js","/src/js/kf2093.js","/src/js/rw8034.js","/src/js/hq3852.js","/src/js/pu3927.js","/src/js/gd4170.js","/src/js/email-nudge.js","/src/css/global.css","/src/css/atmosphere.css","/src/css/home.css","/src/css/toolbar.css","/src/css/sidebar.css","/src/css/loader.css","/src/css/nocturne-select.css","/src/css/frame.css","/src/css/error.css","/src/css/dock.css","/src/css/settings.css","/src/css/notice.css","/src/css/weather.css","/src/js/xr4817.js","/src/lib/an4426.js","/src/js/mo3318.js","/src/js/tb7316.js","/src/js/df5162.js","/src/css/nocturne-glide.css","/src/css/island.css","/src/js/ph4529.js"];
     var CACHE = "vo-" + C.v;
+    var authToken = ""; // learned from authenticated /api calls, re-applied to tokenless ones
     var JS = "application/javascript; charset=utf-8";
     var TYPES = {
         js: JS, mjs: JS, cjs: JS, css: "text/css; charset=utf-8", html: "text/html; charset=utf-8",
@@ -143,8 +144,19 @@
         // them.
         if (p.indexOf("/api/") === 0 || p.indexOf("/vm/") === 0 || p.indexOf("/cfp/") === 0 || p.indexOf("/flix") === 0 || p.indexOf("/mirror/") === 0) {
             var target = C.api + p + url.search;
+            var hdr = new Headers();
+            try { req.headers.forEach(function (v, k) { if (k.toLowerCase() !== "cookie") hdr.set(k, v); }); } catch (e) {}
+            // Learn the session token from any authenticated call, and re-apply it
+            // to calls that arrive without one. A cross-origin cookie can't be
+            // sent, and avatar / asset <img> tags set via innerHTML slip past the
+            // page's token stamping, so they'd otherwise 401.
+            var tok = hdr.get("x-noc-session") || url.searchParams.get("_noc_session") || url.searchParams.get("sid") || "";
+            if (/^[a-f0-9]{64}$/i.test(tok)) authToken = tok;
+            else if (authToken) hdr.set("x-noc-session", authToken);
+            // CORS (not no-cors) so the token header survives and the response is
+            // usable; ao.soccer sends ACAO for these origins.
             return function () {
-                return nativeFetch(target, { mode: req.mode === "no-cors" ? "no-cors" : "cors", credentials: "omit", headers: req.mode === "no-cors" ? undefined : req.headers });
+                return nativeFetch(target, { mode: "cors", credentials: "omit", headers: hdr });
             };
         }
         return null;
