@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#060509">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://ao.soccer">
+<title>Redirecting</title>
+<style>
+html,body{margin:0;height:100%;background:#060509;color:#ededf0;font:14px/1.5 system-ui,sans-serif}
+#m{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;height:100%;padding:24px;box-sizing:border-box;text-align:center}
+/* Same mark, size and place as the app's own loader, so the handoff does not jump. */
+#s{width:28px;height:28px;background:var(--a,#a898e8);-webkit-mask:var(--k) center/contain no-repeat;mask:var(--k) center/contain no-repeat;animation:r 1s linear infinite;
+--k:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M12%202V6M16.2%207.8L19.1%204.9M18%2012H22M16.2%2016.2L19.1%2019.1M12%2018V22M4.9%2019.1L7.8%2016.2M2%2012H6M4.9%204.9L7.8%207.8%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E")}
+@keyframes r{to{transform:rotate(360deg)}}
+/* Absolute, so showing the bar never moves the mark off centre. */
+#b{position:absolute;top:calc(50% + 32px);left:50%;width:120px;height:2px;margin-left:-60px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden;opacity:0;transition:opacity .3s}
+#b.on{opacity:1}
+#f{width:100%;height:100%;background:var(--a,#a898e8);transform:scaleX(0);transform-origin:0 50%;transition:transform .25s ease-out}
+/* Asset counter, under the bar. Tabular digits so it does not jitter as it counts. */
+#c{position:absolute;top:calc(50% + 46px);left:0;right:0;text-align:center;font-size:12px;font-variant-numeric:tabular-nums;color:#8f8ba6;opacity:0;transition:opacity .3s}
+#c.on{opacity:1}
+#t{display:none;max-width:420px;color:#b9b6c9}
+.fail #s,.fail #b,.fail #c{display:none}.fail #t{display:block}
+@media (prefers-reduced-motion:reduce){#s{animation-duration:2.4s}#f{transition:none}}
+</style>
+</head>
+<body>
+<div id="m"><div id="s" role="status" aria-label="Loading"></div><div id="b"><div id="f"></div></div><div id="c" aria-live="polite"></div><div id="t"></div></div>
+<script>
+(async function () {
+    var KEY = "vo-boot";
+    try {
+        var a = localStorage.getItem("nocturne-accent");
+        if (a && /^#[0-9a-f]{6}$/i.test(a)) document.documentElement.style.setProperty("--a", a);
+    } catch (e) {}
+    function fail(text) {
+        document.getElementById("t").textContent = text;
+        document.getElementById("m").className = "fail";
+    }
+    function tries() {
+        try {
+            var raw = (sessionStorage.getItem(KEY) || "").split(":");
+            return Date.now() - Number(raw[1] || 0) < 30000 ? Number(raw[0] || 0) : 0;
+        } catch (e) { return 0; }
+    }
+    // Ask the worker to fetch the files the home page needs before the page
+    // is swapped in, so it paints whole instead of piece by piece. Never a
+    // gate: no answer, or a slow network, and the page opens anyway.
+    function warm(worker) {
+        return new Promise(function (done) {
+            var bar = document.getElementById("b"), fill = document.getElementById("f"), count = document.getElementById("c");
+            // Hold the loader on screen at least this long so the count is readable
+            // even when every file is already cached and the fetch is instant.
+            var start = Date.now(), MIN = 650;
+            var finished = false, quiet = setTimeout(end, 2500), cap = setTimeout(end, 15000);
+            function end() {
+                if (finished) return;
+                finished = true; clearTimeout(quiet); clearTimeout(cap);
+                setTimeout(done, Math.max(0, MIN - (Date.now() - start)));
+            }
+            try {
+                var ch = new MessageChannel();
+                ch.port1.onmessage = function (e) {
+                    var d = e.data || {};
+                    clearTimeout(quiet);
+                    if (d.total) {
+                        bar.className = "on";
+                        fill.style.transform = "scaleX(" + Math.min(1, d.done / d.total) + ")";
+                        count.textContent = Math.min(d.done, d.total) + " / " + d.total + " assets";
+                        count.className = "on";
+                    }
+                    if (d.ready) setTimeout(end, 150);
+                };
+                worker.postMessage({ type: "vo-warm" }, [ch.port2]);
+            } catch (e) { end(); }
+        });
+    }
+    if (!("serviceWorker" in navigator)) { fail("This browser cannot open the page here. Try a normal (not private) window."); return; }
+    try {
+        var mode = "exp";
+        try {
+            var v = (new URLSearchParams(location.search).get("mode") || localStorage.getItem("view-mode") || "exp").toLowerCase();
+            mode = v === "std" ? "std" : "exp";
+        } catch (e) {}
+        var script = mode === "std" ? "/service-worker.js" : "/service-worker-x.js";
+        await navigator.serviceWorker.register(script, { scope: "/", updateViaCache: "none" });
+        await navigator.serviceWorker.ready;
+        if (!navigator.serviceWorker.controller) {
+            await new Promise(function (done) {
+                navigator.serviceWorker.addEventListener("controllerchange", done, { once: true });
+                setTimeout(done, 3000);
+            });
+        }
+        // Hand off to the app with a marker the worker reads to serve the app page
+        // instead of this loader (which it serves for a bare visit, every time).
+        var handoff = function () { location.replace(location.pathname + "?go=1"); };
+        if (!navigator.serviceWorker.controller) {
+            // Worker never took control. Count the attempt so a stuck worker can't loop.
+            var n = tries();
+            if (n >= 3) { fail("Could not start. Reload the page to try again."); return; }
+            try { sessionStorage.setItem(KEY, (n + 1) + ":" + Date.now()); } catch (e) {}
+            handoff();
+            return;
+        }
+        try { sessionStorage.removeItem(KEY); } catch (e) {}
+        await warm(navigator.serviceWorker.controller);
+        handoff();
+    } catch (e) {
+        fail("Could not start. Reload the page to try again.");
+    }
+})();
+</script>
+</body>
+</html>
