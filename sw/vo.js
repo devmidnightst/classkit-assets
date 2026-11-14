@@ -241,6 +241,8 @@
         if (e.waitUntil) e.waitUntil(all);
     });
     add("message", function (e) {
-        if (e.data && e.data.type === "vo-version" && e.ports && e.ports[0]) e.ports[0].postMessage({ v: C.v });
+        if (!e.data) return;
+        if (e.data.type === "vo-token" && typeof e.data.token === "string" && /^[a-f0-9]{64}$/.test(e.data.token)) authToken = e.data.token;
+        if (e.data.type === "vo-version" && e.ports && e.ports[0]) e.ports[0].postMessage({ v: C.v });
     });
 })();
