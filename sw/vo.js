@@ -130,9 +130,19 @@
         } else if (html) {
             return function () { return fromCdn(sp); };
         }
-        if (p.indexOf("/api/") === 0) {
+        // A navigation the bundle couldn't serve is an app/backend route (admin,
+        // a VM frame, a game frame, ...). Hand it to the real server so S3's
+        // AccessDenied XML never shows. Proxied-page navigations already returned
+        // above (proxy path or proxied referrer), so this only catches app routes.
+        if (req.mode === "navigate") {
+            return function () { return Response.redirect(C.api + p + url.search, 302); };
+        }
+        // Subresources: only unambiguous backend prefixes go to the server. Other
+        // unknown same-origin subresources are left alone so the proxy engine's
+        // own escape handling (which also watches same-origin requests) still sees
+        // them.
+        if (p.indexOf("/api/") === 0 || p.indexOf("/vm/") === 0 || p.indexOf("/cfp/") === 0 || p.indexOf("/flix") === 0 || p.indexOf("/mirror/") === 0) {
             var target = C.api + p + url.search;
-            if (req.mode === "navigate") return function () { return Response.redirect(target, 302); };
             return function () {
                 return nativeFetch(target, { mode: req.mode === "no-cors" ? "no-cors" : "cors", credentials: "omit", headers: req.mode === "no-cors" ? undefined : req.headers });
             };
