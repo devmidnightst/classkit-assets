@@ -755,3 +755,17 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
 .reduce-motion .lb-card, .reduce-motion .panel-overlay, .reduce-motion .panel-modal {
     animation: none !important;
 }
+
+/* Softer shapes. Chat used the same 6px/10px corners as the tool pages, which
+   read as boxy around avatars and message text. Everything here follows the
+   two tokens, so raising them rounds buttons, inputs, cards and menus together;
+   the few rules below are the parts that want more than the token. */
+:root { --r-sm: 10px; --r-md: 16px; }
+.msg { border-radius: 12px; }
+.composer-box { border-radius: 22px; padding-left: 4px; }
+.send-btn, .icon-btn, .cr-add, .menu-btn { border-radius: 50%; }
+.hdr-online, .brand-sub, .cr-dm-total, .back { border-radius: 999px; }
+.me-btn { border-radius: 999px; }
+.ctx-menu { border-radius: 14px; }
+.ctx-item { border-radius: 9px; }
+.gate-card { border-radius: 20px; }

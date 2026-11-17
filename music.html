@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><script>(function(){function p(){try{var t=localStorage.getItem("noc-session");if(t&&/^[a-f0-9]{64}$/i.test(t)&&navigator.serviceWorker&&navigator.serviceWorker.controller)navigator.serviceWorker.controller.postMessage({type:"vo-token",token:t})}catch(e){}}p();try{addEventListener("storage",p)}catch(e){}try{navigator.serviceWorker.addEventListener("controllerchange",p)}catch(e){}setInterval(p,3000)})();</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#060509"><meta name="robots" content="noindex"><title>Nocturne - Music</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230b0a14'/><circle cx='16' cy='16' r='9' fill='%23c9c1ff'/><circle cx='21' cy='14' r='8' fill='%230b0a14'/></svg>"><link rel="preload" href="/src/css/global.css" as="style"><link rel="preload" href="/src/css/dock.css" as="style"><link rel="preload" href="/src/css/music.css" as="style"><link rel="preload" href="/src/css/nocturne-glide.css" as="style"><link rel="preload" href="/src/css/island.css" as="style"><link rel="preload" href="/src/js/ph4529.js" as="script"><link rel="preload" href="/src/js/lr2815.js" as="script"><link rel="preload" href="/src/js/wz6714.js" as="script"><link rel="preload" href="/src/js/dm5108.js" as="script"><link rel="preload" href="/src/js/pu3927.js?v=20260929-2" as="script"><link rel="preload" href="/src/js/gd4170.js" as="script"><link rel="preload" href="/src/js/email-nudge.js?v=1" as="script"><script async src="https://www.googletagmanager.com/gtag/js?id=G-69T9E59SM7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-69T9E59SM7",{cookie_flags:"SameSite=None;Secure"});</script><script src="/assets/index-KsZVHi7O.js"></script></head><body>
+<!DOCTYPE html><html lang="en"><head><script>(function(){function p(){try{var t=localStorage.getItem("noc-session");if(t&&/^[a-f0-9]{64}$/i.test(t)&&navigator.serviceWorker&&navigator.serviceWorker.controller)navigator.serviceWorker.controller.postMessage({type:"vo-token",token:t})}catch(e){}}p();try{addEventListener("storage",p)}catch(e){}try{navigator.serviceWorker.addEventListener("controllerchange",p)}catch(e){}setInterval(p,3000)})();</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#060509"><meta name="robots" content="noindex"><title>Nocturne - Music</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%230b0a14'/><circle cx='16' cy='16' r='9' fill='%23c9c1ff'/><circle cx='21' cy='14' r='8' fill='%230b0a14'/></svg>"><link rel="preload" href="/src/css/global.css?v=mwec7azt" as="style"><link rel="preload" href="/src/css/dock.css?v=mvjxy2u7" as="style"><link rel="preload" href="/src/css/music.css?v=mwkbeyj8" as="style"><link rel="preload" href="/src/css/nocturne-glide.css?v=mviye9nj" as="style"><link rel="preload" href="/src/css/island.css?v=mvjxy2u9" as="style"><link rel="preload" href="/src/js/ph4529.js?v=a50ff1db41f2" as="script"><link rel="preload" href="/src/js/lr2815.js?v=d820b1042c41" as="script"><link rel="preload" href="/src/js/wz6714.js?v=d42d663d8a96" as="script"><link rel="preload" href="/src/js/dm5108.js?v=a4508358e92f" as="script"><link rel="preload" href="/src/js/pu3927.js?v=20260929-2" as="script"><link rel="preload" href="/src/js/gd4170.js?v=679513e5c4c4" as="script"><link rel="preload" href="/src/js/email-nudge.js?v=1" as="script"><script async src="https://www.googletagmanager.com/gtag/js?id=G-69T9E59SM7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-69T9E59SM7",{cookie_flags:"SameSite=None;Secure"});</script><script src="/assets/index-zStT0l4h.js"></script></head><body>
 
 <canvas id="bgCanvas" class="visible"></canvas>
 
@@ -8,16 +8,16 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
             Music
         </div>
-        <form class="mu-search" id="muSearchForm" autocomplete="off">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input id="muSearch" type="search" placeholder="Search songs, artists…" spellcheck="false">
-        </form>
         <div class="mu-src" id="muSource" role="tablist" aria-label="Source">
             <button class="mu-src-btn on" data-src="x8" title="Full songs — Tidal catalog, YouTube Music audio">x8</button>
             <button class="mu-src-btn" data-src="ytmusic" title="YouTube Music — full-length songs">YT Music</button>
             <button class="mu-src-btn" data-src="deezer" title="Mainstream catalog — 30-second previews">Deezer</button>
             <button class="mu-src-btn" data-src="audius" title="Full-length tracks (indie / electronic)">Audius</button>
         </div>
+        <form class="mu-search" id="muSearchForm" autocomplete="off">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="muSearch" type="search" placeholder="Search songs and artists" aria-label="Search songs and artists" spellcheck="false">
+        </form>
         <div id="muAuth" class="mu-auth"></div>
     </header>
 
@@ -30,13 +30,27 @@
 
     <div class="mu-genres" id="muGenres"></div>
 
-    <main class="mu-main">
-        <div class="mu-headrow">
-            <div>
+    <main class="mu-main" id="muMain">
+        <section class="mu-hero">
+            <div class="mu-hero-art" id="muHeroArt"></div>
+            <div class="mu-hero-text">
+                <div class="mu-hero-kind" id="muKind">Made for you</div>
                 <h2 id="muHeading" class="mu-heading">For You</h2>
                 <p id="muSub" class="mu-sub"></p>
+                <p id="muCount" class="mu-count"></p>
             </div>
+        </section>
+        <div class="mu-actions" id="muActions" hidden>
+            <button id="muHeroPlay" class="mu-bigplay" aria-label="Play"></button>
+            <button id="muHeroShuffle" class="mu-iconbtn mu-small" aria-label="Shuffle" title="Shuffle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg></button>
             <button id="muClearHist" class="mu-textbtn" hidden>Clear history</button>
+        </div>
+        <div class="mu-thead" id="muThead" hidden>
+            <span class="mu-th-idx">#</span>
+            <span class="mu-th-title">Title</span>
+            <span class="mu-th-album">Album</span>
+            <span></span>
+            <span class="mu-th-dur" aria-label="Duration"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
         </div>
         <div id="muList" class="mu-list"></div>
         <div id="muState" class="mu-state"></div>
@@ -71,6 +85,7 @@
     </div>
 
     <div class="mu-extra">
+        <button id="muDl" class="mu-iconbtn mu-small mu-dl" aria-label="Download this song" title="Download"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg><span class="noc-spokes" role="status" aria-label="Downloading"></span></button>
         <button id="muMute" class="mu-iconbtn mu-small" aria-label="Mute"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg></button>
         <input id="muVol" class="mu-vol" type="range" min="0" max="100" value="100" aria-label="Volume">
     </div>
@@ -78,4 +93,4 @@
 
 <audio id="muAudio" preload="metadata"></audio>
 
-<nav id="dock"></nav><script src="/assets/index-JxFX9h7R.js"></script></body></html>
+<nav id="dock"></nav><script src="/assets/index-r2XiITWK.js"></script></body></html>
