@@ -21,8 +21,11 @@
     var KINDS = { image: 1, font: 1 };
     var RW_KINDS = { script: 1, style: 1 };
     var RW_STORE = "nc-rw-" + (g.__nocRwV || "0");
-    var RW_MAX_ENTRIES = 800;
-    var RW_MAX_BYTES = 8 * 1024 * 1024;
+    var RW_MAX_ENTRIES = 4000;   // discord alone is ~1100 files; a smaller cap thrashed (FIFO trim)
+    // discord's main bundle (web.*.js) is ~12.8MB raw and larger once rewritten.
+    // At 8MB it was never kept, so every visit re-downloaded and re-rewrote it
+    // on the page's main thread before discord could draw (the white page).
+    var RW_MAX_BYTES = 48 * 1024 * 1024;
     var P_ORIGIN = "__nc_pfx_o_7f3a__";
     var P_PATH = "__nc_pfx_p_7f3a__";
 

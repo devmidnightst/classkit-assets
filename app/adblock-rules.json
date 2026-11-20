@@ -1,7 +1,7 @@
 {
  "v": "d091d6c9668f96ee",
  "engine": 899,
- "built": "2026-11-17T14:22:03.100Z",
+ "built": "2026-11-19T17:07:50.466Z",
  "bytes": 5413981,
  "lists": [
   "easylist/easylist.txt",
@@ -21,6 +21,6 @@
  ],
  "network": 120321,
  "cosmetic": 36883,
- "parseMs": 3547,
+ "parseMs": 4314,
  "scriptlets": true
 }

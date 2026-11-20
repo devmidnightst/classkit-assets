@@ -1505,7 +1505,7 @@ var EpoxyTransport = class {
         }
         headersObj[key] = value;
       }
-      let res = await this.client.fetch(remote.href, {
+      let res = await (async (u, o) => { for (let i = 0; ; i++) { try { return await this.client.fetch(u, o); } catch (e) { var m = String(e && (e.message || e)); if (i >= 2 || (typeof ReadableStream === "function" && o.body instanceof ReadableStream) || !/SendRequest|BrokenPipe|broken pipe|ChannelClosed|IncompleteMessage|connection closed before|connection reset|ConnectionReset|GoAway|GOAWAY|REFUSED_STREAM/i.test(m)) throw e; await new Promise((r) => setTimeout(r, 50 * (i + 1))); } } })(remote.href, {
         method,
         body,
         headers: headersObj,

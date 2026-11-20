@@ -138,6 +138,16 @@
         // AccessDenied XML never shows. Proxied-page navigations already returned
         // above (proxy path or proxied referrer), so this only catches app routes.
         if (req.mode === "navigate") {
+            // A top-level page stays on this address: try /name.html from the
+            // bundle, else the bundled 404. Only admin (server-rendered) still
+            // hands off to the real server. Frames (VMs, games) keep the handoff
+            // since they never show in the address bar.
+            if ((req.destination || "document") === "document" && !/^\/(admin|god|cp|panel)(\/|$)/i.test(p)) {
+                var bare = p.replace(/^\/+|\/+$/g, "").toLowerCase();
+                var guess = bare && bare.indexOf("/") === -1 ? bare + ".html" : "";
+                if (guess && PAGES.has(guess)) return function () { return fromCdn(TABS.has(guess) ? "/index.html" : "/" + guess); };
+                if (FILES.has("/404.html")) return function () { return fromCdn("/404.html"); };
+            }
             return function () { return Response.redirect(C.api + p + url.search, 302); };
         }
         // Subresources: only unambiguous backend prefixes go to the server. Other
