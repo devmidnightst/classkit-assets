@@ -1491,6 +1491,145 @@ var EpoxyTransport = class {
     this.client = new _TnClient(this.wisp, options);
     this.ready = true;
   }
+  __nocRevive() { if (this.__nocRv) return this.__nocRv; var self = this, n = this.__nocRvN = (this.__nocRvN || 0) + 1; this.__nocRv = Promise.resolve().then(function () { return self.client.replace_stream_provider(); }).then(function () { self.__nocDead = false; self.__nocRvN = 0; }, function () { return new Promise(function (r) { setTimeout(r, Math.min(2000, 150 * n)); }); }).then(function () { self.__nocRv = null; }); return this.__nocRv; }
+  __nocWs(url, protocols, requestHeaders, onopen, onmessage, onclose, onerror) {
+    var self = this, enc = new TextEncoder(), dec = new TextDecoder();
+    var secure = url.protocol === "wss:" || url.protocol === "https:";
+    var port = Number(url.port) || (secure ? 443 : 80);
+    var writer = null, reader = null, state = 0, wq, closeTimer = 0, readyRes, ready = new Promise(function (r) { readyRes = r; }); // 0 connecting, 1 open, 2 closing, 3 closed
+    var protos = protocols == null ? [] : (typeof protocols === "string" ? [protocols] : Array.from(protocols));
+    var muxRe = /MuxTaskEnded|Multiplexor task ended/i;
+    var held = null, flushHeld = function () { var h = held; held = null; if (h) for (var hi = 0; hi < h.length; hi++) { try { onmessage(h[hi]); } catch (e) {} } };
+    var finish = function (code, reason) {
+        if (state === 3) return; flushHeld(); state = 3; clearTimeout(closeTimer);
+        try { reader && reader.cancel().catch(function () {}); } catch (e) {}
+        try { writer && writer.close().catch(function () {}); } catch (e) {}
+        try { onclose(code, reason || ""); } catch (e) {}
+    };
+    var fail = function (e) {
+        if (state === 3) return;
+        try { onerror(String(e && (e.message || e))); } catch (x) {}
+        finish(1006, "");
+    };
+    var frame = function (op, payload) {
+        var n = payload.length, hl = n < 126 ? 2 : n < 65536 ? 4 : 10, out = new Uint8Array(hl + 4 + n), i;
+        out[0] = 0x80 | op;
+        if (n < 126) out[1] = 0x80 | n;
+        else if (n < 65536) { out[1] = 0x80 | 126; out[2] = n >>> 8; out[3] = n & 255; }
+        else { out[1] = 0x80 | 127; for (i = 0; i < 8; i++) out[2 + i] = Math.floor(n / Math.pow(2, 8 * (7 - i))) & 255; }
+        var mask = crypto.getRandomValues(new Uint8Array(4));
+        out.set(mask, hl);
+        for (i = 0; i < n; i++) out[hl + 4 + i] = payload[i] ^ mask[i & 3];
+        return out;
+    };
+    var put = function (op, payload) {
+        var f = frame(op, payload);
+        wq = wq.then(function () { if (writer && state !== 3) return writer.write(f); }).catch(fail);
+        return wq;
+    };
+    var open = (async function () {
+        if (self.__nocDead) await self.__nocRevive();
+        var io;
+        for (var i = 0; ; i++) {
+            try { io = await (secure ? self.client.connect_tls(url.hostname + ":" + port) : self.client.connect_tcp(url.hostname + ":" + port)); break; }
+            catch (e) {
+                if (i < 2 && muxRe.test(String(e && (e.message || e)))) { self.__nocDead = true; await self.__nocRevive(); continue; }
+                throw e;
+            }
+        }
+        if (state === 3) { try { io.write.getWriter().close().catch(function () {}); } catch (e) {} return; }
+        writer = io.write.getWriter(); reader = io.read.getReader();
+        var key = btoa(String.fromCharCode.apply(null, crypto.getRandomValues(new Uint8Array(16))));
+        var host = url.hostname.indexOf(":") !== -1 ? "[" + url.hostname + "]" : url.hostname;
+        var req = "GET " + (url.pathname || "/") + url.search + " HTTP/1.1\r\nHost: " + host + (url.port ? ":" + url.port : "") +
+            "\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Key: " + key + "\r\nSec-WebSocket-Version: 13\r\n";
+        if (protos.length) req += "Sec-WebSocket-Protocol: " + protos.join(", ") + "\r\n";
+        var seen = {}, skip = /^(host|connection|upgrade|content-length|transfer-encoding|sec-websocket-(key|version|protocol|extensions|accept))$/i;
+        for (var pair of (requestHeaders || [])) {
+            var k = String(pair[0]), v = String(pair[1]);
+            if (skip.test(k) || /[\r\n]/.test(k + v)) continue;
+            seen[k.toLowerCase()] = 1; req += k + ": " + v + "\r\n";
+        }
+        if (!seen["user-agent"] && typeof navigator !== "undefined") req += "User-Agent: " + navigator.userAgent + "\r\n";
+        await writer.write(enc.encode(req + "\r\n"));
+        // Response head, then frames from whatever came after it.
+        var buf = new Uint8Array(0), end = -1;
+        var more = async function () {
+            var r = await reader.read();
+            if (r.done) return false;
+            var c = r.value instanceof Uint8Array ? r.value : new Uint8Array(r.value), nb = new Uint8Array(buf.length + c.length);
+            nb.set(buf); nb.set(c, buf.length); buf = nb; return true;
+        };
+        while (end < 0) {
+            if (!(await more())) throw new Error("websocket handshake: connection closed");
+            for (var j = 3; j < buf.length; j++) if (buf[j] === 10 && buf[j - 1] === 13 && buf[j - 2] === 10 && buf[j - 3] === 13) { end = j + 1; break; }
+            if (end < 0 && buf.length > 65536) throw new Error("websocket handshake: response too large");
+        }
+        var head = dec.decode(buf.subarray(0, end)).split("\r\n"), status = Number((head[0].split(" ")[1]) || 0), rh = {};
+        for (var h = 1; h < head.length; h++) { var p = head[h].indexOf(":"); if (p > 0) rh[head[h].slice(0, p).trim().toLowerCase()] = head[h].slice(p + 1).trim(); }
+        if (status !== 101) throw new Error("websocket handshake: unexpected status " + status);
+        if (rh["sec-websocket-extensions"]) throw new Error("websocket handshake: unrequested extension " + rh["sec-websocket-extensions"]);
+        buf = buf.slice(end);
+        if (state === 3) return;
+        if (state === 0) { state = 1; try { onopen(rh["sec-websocket-protocol"] || "", ""); } catch (e) {} }
+        readyRes();
+        // The controller reports "open" over its rpc channel but data over a
+        // separate port, so a server's first message (discord's HELLO, an
+        // engine.io handshake) could reach the site before onopen. Hold
+        // incoming messages briefly so the order matches a real browser.
+        held = [];
+        setTimeout(flushHeld, 50);
+        var deliver = function (v) { if (held) held.push(v); else { try { onmessage(v); } catch (e) {} } };
+        var parts = [], partOp = 0;
+        for (;;) {
+            if (buf.length < 2 && !(await more())) break;
+            if (buf.length < 2) continue;
+            var b1 = buf[1], len = b1 & 127, off = 2;
+            if (len === 126) { if (buf.length < 4) { if (!(await more())) break; continue; } len = (buf[2] << 8) | buf[3]; off = 4; }
+            else if (len === 127) { if (buf.length < 10) { if (!(await more())) break; continue; } len = 0; for (var q = 2; q < 10; q++) len = len * 256 + buf[q]; off = 10; }
+            var masked = b1 & 128, moff = off; if (masked) off += 4;
+            if (buf.length < off + len) { if (!(await more())) break; continue; }
+            var fin = buf[0] & 128, op = buf[0] & 15, data = buf.slice(off, off + len);
+            if (masked) for (var m = 0; m < len; m++) data[m] ^= buf[moff + (m & 3)];
+            buf = buf.slice(off + len);
+            if (op === 8) {
+                var code = len >= 2 ? (data[0] << 8) | data[1] : 1005, reason = len > 2 ? dec.decode(data.subarray(2)) : "";
+                if (state === 1) { state = 2; put(8, data.subarray(0, Math.min(len, 2))); }
+                await wq; finish(code, reason); return;
+            }
+            if (op === 9) { put(10, data); continue; }
+            if (op === 10) continue;
+            if (op === 1 || op === 2) { parts = [data]; partOp = op; } else if (op === 0) parts.push(data); else throw new Error("websocket: bad opcode " + op);
+            if (!fin) continue;
+            var total = 0, x; for (x of parts) total += x.length;
+            var msg = new Uint8Array(total), at = 0; for (x of parts) { msg.set(x, at); at += x.length; }
+            parts = [];
+            deliver(partOp === 1 ? dec.decode(msg) : msg.buffer);
+        }
+        finish(1006, "");
+    })();
+    wq = ready;
+    open.catch(fail).then(function () { readyRes(); });
+    return [
+        async function (data) {
+            if (state >= 2) return;
+            if (typeof Blob !== "undefined" && data instanceof Blob) data = await data.arrayBuffer();
+            if (typeof data === "string") return put(1, enc.encode(data));
+            if (data instanceof ArrayBuffer) return put(2, new Uint8Array(data));
+            if (ArrayBuffer.isView(data)) return put(2, new Uint8Array(data.buffer, data.byteOffset, data.byteLength));
+            return put(1, enc.encode(String(data)));
+        },
+        async function (code, reason) {
+            if (state >= 2) return;
+            var wasOpen = state === 1; state = 2;
+            if (!wasOpen) { await ready; if (state === 3) return; }
+            var r = enc.encode(reason || "").subarray(0, 123), c = typeof code === "number" && code >= 1000 && code < 5000 && code !== 1005 && code !== 1006 ? code : 1000;
+            var p = new Uint8Array(2 + r.length); p[0] = c >> 8; p[1] = c & 255; p.set(r, 2);
+            put(8, p);
+            closeTimer = setTimeout(function () { finish(c, reason || ""); }, 3000);
+        }
+    ];
+}
   async meta() {
   }
   async request(remote, method, body, headers, signal) {
@@ -1505,7 +1644,7 @@ var EpoxyTransport = class {
         }
         headersObj[key] = value;
       }
-      let res = await (async (u, o) => { for (let i = 0; ; i++) { try { return await this.client.fetch(u, o); } catch (e) { var m = String(e && (e.message || e)); if (i >= 2 || (typeof ReadableStream === "function" && o.body instanceof ReadableStream) || !/SendRequest|BrokenPipe|broken pipe|ChannelClosed|IncompleteMessage|connection closed before|connection reset|ConnectionReset|GoAway|GOAWAY|REFUSED_STREAM/i.test(m)) throw e; await new Promise((r) => setTimeout(r, 50 * (i + 1))); } } })(remote.href, {
+      let res = await (async (u, o) => { for (let i = 0; ; i++) { try { if (this.__nocDead) await this.__nocRevive(); return await this.client.fetch(u, o); } catch (e) { var m = String(e && (e.message || e)); var mux = /MuxTaskEnded|Multiplexor task ended/i.test(m); if (mux) this.__nocDead = true; if (i >= (mux ? 3 : 2) || (typeof ReadableStream === "function" && o.body instanceof ReadableStream) || !(mux || /SendRequest|BrokenPipe|broken pipe|ChannelClosed|IncompleteMessage|connection closed before|connection reset|ConnectionReset|GoAway|GOAWAY|REFUSED_STREAM|tls handshake eof/i.test(m))) throw e; if (mux) await this.__nocRevive(); else await new Promise((r) => setTimeout(r, 50 * (i + 1))); } } })(remote.href, {
         method,
         body,
         headers: headersObj,
@@ -1533,6 +1672,8 @@ var EpoxyTransport = class {
     }
   }
   connect(url, protocols, requestHeaders, onopen, onmessage, onclose, onerror) {
+    var __nocNative = false; try { __nocNative = globalThis.localStorage && localStorage.getItem("nc-ws-native") === "1"; } catch (e) {}
+    if (!__nocNative && this.client && typeof this.client.connect_tls === "function") return this.__nocWs(url, protocols, requestHeaders, onopen, onmessage, onclose, onerror);
     let handlers = new _TnHandlers(
       // epoxy does not support getting the server selected protocol/extension
       () => onopen("", ""),
@@ -1553,12 +1694,13 @@ var EpoxyTransport = class {
       }
       headersObj[key] = value;
     }
-    let ws = this.client.connect_websocket(
+    let ws = (this.__nocDead ? this.__nocRevive() : Promise.resolve()).then(() => this.client.connect_websocket(
       handlers,
       url.href,
       protocols,
       headersObj
-    );
+    ));
+    ws.catch((e) => { if (/MuxTaskEnded|Multiplexor task ended/i.test(String(e && (e.message || e)))) { this.__nocDead = true; this.__nocRevive(); } });
     return [
       async (data) => {
         if (data instanceof Blob) data = await data.arrayBuffer();

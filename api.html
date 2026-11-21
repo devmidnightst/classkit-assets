@@ -145,7 +145,7 @@
             </div>
 
             <h3 class="dh">Example — API key</h3>
-            <pre><button class="copy-btn">Copy</button><code>curl -s <span class="ex-origin">https://olive-fun.com</span>/api/ai \
+            <pre><button class="copy-btn">Copy</button><code>curl -s <span class="ex-origin"></span>/api/ai \
   -H "Authorization: Bearer noct_your_api_key" \
   -H "Content-Type: application/json" \
   -d '{"model":"&lt;model-id&gt;","prompt":"Explain CSS grid in 2 sentences."}'</code></pre>
@@ -153,7 +153,7 @@
             <div class="note"><b>Thinking level.</b> Add <code class="inline">"level":"extended"</code> for deeper reasoning before the answer (same as the AI page's Extended mode); <code class="inline">"off"</code> is fastest, <code class="inline">"normal"</code> is the default. Applies to reasoning-capable models.</div>
 
             <h3 class="dh">Example — multi-turn + account auth</h3>
-            <pre><button class="copy-btn">Copy</button><code>curl -s <span class="ex-origin">https://olive-fun.com</span>/api/ai \
+            <pre><button class="copy-btn">Copy</button><code>curl -s <span class="ex-origin"></span>/api/ai \
   -H "Content-Type: application/json" \
   -d '{
     "model":"&lt;model-id&gt;",
@@ -184,7 +184,7 @@ data: [DONE]</code></pre>
 
             <h3 class="dh">Images (vision)</h3>
             <p class="dp">Send images to a <b style="color:var(--text-primary)">vision model</b> (marked 👁 on the <a href="#" data-nav="models">Models</a> tab). Use an array <code>content</code> with <code>image_url</code> parts (OpenAI format); the URL can be a public <code>https</code> link or a base64 <code>data:</code> URL.</p>
-            <pre><button class="copy-btn">Copy</button><code>curl -s <span class="ex-origin">https://olive-fun.com</span>/api/ai \
+            <pre><button class="copy-btn">Copy</button><code>curl -s <span class="ex-origin"></span>/api/ai \
   -H "Authorization: Bearer noct_your_api_key" -H "Content-Type: application/json" \
   -d '{
     "model":"&lt;vision-model-id&gt;",
@@ -212,7 +212,7 @@ data: [DONE]</code></pre>
             <p class="dp">No official client library yet — the API is plain JSON over HTTP, so any HTTP client works. Two common ones:</p>
             <h3 class="dh">JavaScript (fetch)</h3>
             <pre><button class="copy-btn">Copy</button><code><span class="tok-com">// non-streaming</span>
-const r = await fetch("<span class="ex-origin">https://olive-fun.com</span>/api/ai", {
+const r = await fetch("<span class="ex-origin"></span>/api/ai", {
   method: "POST",
   headers: { Authorization: "Bearer noct_your_api_key", "Content-Type": "application/json" },
   body: JSON.stringify({ model: "&lt;model-id&gt;", prompt: "Say hi in 5 words." })
@@ -220,7 +220,7 @@ const r = await fetch("<span class="ex-origin">https://olive-fun.com</span>/api/
 const data = await r.json();
 console.log(data.response);</code></pre>
             <pre><button class="copy-btn">Copy</button><code><span class="tok-com">// streaming</span>
-const r = await fetch("<span class="ex-origin">https://olive-fun.com</span>/api/ai", {
+const r = await fetch("<span class="ex-origin"></span>/api/ai", {
   method: "POST",
   headers: { Authorization: "Bearer noct_your_api_key", "Content-Type": "application/json" },
   body: JSON.stringify({ model: "&lt;model-id&gt;", prompt: "Count to 5.", stream: true })
@@ -243,7 +243,7 @@ while (true) {
             <pre><button class="copy-btn">Copy</button><code>import requests
 
 r = requests.post(
-    "<span class="ex-origin">https://olive-fun.com</span>/api/ai",
+    "<span class="ex-origin"></span>/api/ai",
     headers={"Authorization": "Bearer noct_your_api_key"},
     json={"model": "&lt;model-id&gt;", "prompt": "Say hi in 5 words."},
 )
@@ -252,7 +252,7 @@ print(r.json()["response"])</code></pre>
 import json, requests
 
 with requests.post(
-    "<span class="ex-origin">https://olive-fun.com</span>/api/ai",
+    "<span class="ex-origin"></span>/api/ai",
     headers={"Authorization": "Bearer noct_your_api_key"},
     json={"model": "&lt;model-id&gt;", "prompt": "Count to 5.", "stream": True},
     stream=True,
@@ -357,15 +357,15 @@ with requests.post(
             </div>
 
             <h3 class="dh">Example — GET</h3>
-            <pre><button class="copy-btn">Copy</button><code>curl -s "<span class="ex-origin">https://olive-fun.com</span>/api/v1/linkcheck?url=discord.com&amp;filters=all"</code></pre>
+            <pre><button class="copy-btn">Copy</button><code>curl -s "<span class="ex-origin"></span>/api/v1/linkcheck?url=discord.com&amp;filters=all"</code></pre>
 
             <h3 class="dh">Example — POST</h3>
-            <pre><button class="copy-btn">Copy</button><code>curl -s <span class="ex-origin">https://olive-fun.com</span>/api/v1/linkcheck \
+            <pre><button class="copy-btn">Copy</button><code>curl -s <span class="ex-origin"></span>/api/v1/linkcheck \
   -H "Content-Type: application/json" \
   -d '{"url":"discord.com","filters":["securly","goguardian"]}'</code></pre>
 
             <h3 class="dh">Example — with a key (higher limit)</h3>
-            <pre><button class="copy-btn">Copy</button><code>curl -s "<span class="ex-origin">https://olive-fun.com</span>/api/v1/linkcheck?url=discord.com" \
+            <pre><button class="copy-btn">Copy</button><code>curl -s "<span class="ex-origin"></span>/api/v1/linkcheck?url=discord.com" \
   -H "X-API-Key: your-linkcheck-key"</code></pre>
 
             <h3 class="dh">Response</h3>
@@ -413,14 +413,14 @@ with requests.post(
             </div>
 
             <h2 class="dh">JavaScript example</h2>
-            <pre><button class="copy-btn">Copy</button><code>const r = await fetch("<span class="ex-origin">https://olive-fun.com</span>/api/v1/linkcheck?url=discord.com&amp;filters=all");
+            <pre><button class="copy-btn">Copy</button><code>const r = await fetch("<span class="ex-origin"></span>/api/v1/linkcheck?url=discord.com&amp;filters=all");
 const data = await r.json();
 console.log(data.summary);   // { total: 16, blocked: 3, allowed: 12, errors: 1 }</code></pre>
 
             <h2 class="dh">Python example</h2>
             <pre><button class="copy-btn">Copy</button><code>import requests
 
-r = requests.get("<span class="ex-origin">https://olive-fun.com</span>/api/v1/linkcheck", params={"url": "discord.com", "filters": "all"})
+r = requests.get("<span class="ex-origin"></span>/api/v1/linkcheck", params={"url": "discord.com", "filters": "all"})
 print(r.json()["summary"])</code></pre>
 
             <footer class="gw-foot">

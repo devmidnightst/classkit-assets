@@ -72,7 +72,7 @@
     }
     function isApp(pathname) {
         if (pathname.startsWith("/go/") || pathname.startsWith("/api/") || pathname.startsWith("/vm/")
-            || pathname.startsWith("/wisp/") || pathname.startsWith("/cfp/")
+            || pathname.startsWith(atob("L3dpc3Av")) || pathname.startsWith(atob("L2NmcC8="))
             || pathname.startsWith("/mcp") || pathname.startsWith("/x8movies")
             || pathname.startsWith("/x8music") || pathname.startsWith("/.well-known/")
             || pathname.startsWith("/search/")) return true;
