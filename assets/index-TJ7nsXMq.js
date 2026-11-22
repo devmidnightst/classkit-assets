@@ -30,4 +30,4 @@
 })();
 
 ;
-document.write("<script src=\"/api/games/sdk.js\"></script><script src=\"/src/js/xk6073.js?v=d01c2282eea5\"></script><script src=\"/src/js/qt3674.js?v=a49a6f83ef18\" defer></script><script src=\"/src/js/zb8215.js?v=a26ef5f49fa3\" defer></script><script src=\"/src/js/yc1962.js?v=97baf33bb490\" defer></script><script src=\"/src/js/pu3927.js?v=20260929-2\" defer></script><script src=\"/src/js/gd4170.js?v=679513e5c4c4\" defer></script><script src=\"/src/js/email-nudge.js?v=1\" defer></script><script src=\"/src/js/wz6714.js?v=d42d663d8a96\" defer></script>");
+document.write("<script src=\"/api/games/sdk.js\"></script><script src=\"/src/js/xk6073.js?v=2224cf7ea52c\"></script><script src=\"/src/js/qt3674.js?v=a49a6f83ef18\" defer></script><script src=\"/src/js/zb8215.js?v=a26ef5f49fa3\" defer></script><script src=\"/src/js/yc1962.js?v=97baf33bb490\" defer></script><script src=\"/src/js/pu3927.js?v=20260929-2\" defer></script><script src=\"/src/js/gd4170.js?v=679513e5c4c4\" defer></script><script src=\"/src/js/email-nudge.js?v=1\" defer></script><script src=\"/src/js/wz6714.js?v=d42d663d8a96\" defer></script>");

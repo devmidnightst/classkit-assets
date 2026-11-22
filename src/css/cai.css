@@ -214,6 +214,19 @@ body { height: 100%; width: 100%; overflow: hidden; font-family: var(--font); }
     .cai-empty-title { font-size: 22px; }
 }
 
+.cai-modal-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);opacity:0;transition:opacity .18s var(--ease,ease)}
+.cai-modal-overlay:not([hidden]){opacity:1}
+.cai-modal{background:var(--bg-2,#18181c);border:1px solid rgba(255,255,255,.1);border-radius:var(--r,10px);padding:28px 24px 22px;max-width:360px;width:calc(100% - 32px);text-align:center;transform:translateY(10px) scale(.97);transition:transform .2s var(--ease,ease)}
+.cai-modal-overlay:not([hidden]) .cai-modal{transform:none}
+.cai-modal-icon{color:#d4a022;margin-bottom:12px}
+.cai-modal-title{font-size:15px;font-weight:600;color:var(--fg,#ededf2);margin:0 0 10px}
+.cai-modal-body{font-size:13px;color:var(--fg-muted,#9898a8);line-height:1.6;margin:0 0 20px}
+.cai-modal-body b{color:var(--fg,#ededf2);font-weight:600}
+.cai-modal-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.cai-modal-btn{padding:8px 16px;border-radius:var(--r-sm,6px);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:opacity .15s}
+.cai-modal-btn:hover{opacity:.85}
+.cai-modal-btn-primary{background:var(--accent,#6c63ff);color:#fff}
+.cai-modal-btn-alt{background:rgba(255,255,255,.07);color:var(--fg-muted,#9898a8);border:1px solid rgba(255,255,255,.1)}
 .cai-usage{margin-top:10px;padding:9px 11px;border:1px solid rgba(255,255,255,.08);border-radius: var(--r-sm, 6px);background:rgba(255,255,255,.02)}
 .cai-usage-title{font-size:9.5px;text-transform:uppercase;letter-spacing:.07em;color:#7d7d8a;margin-bottom:8px;font-weight:600}
 .cai-usage-grid{display:flex;gap:6px}
