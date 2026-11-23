@@ -38,14 +38,13 @@ html,body{margin:0;height:100%;background:#060509;color:#ededf0;font:14px/1.5 sy
         var a = localStorage.getItem("nocturne-accent");
         if (a && /^#[0-9a-f]{6}$/i.test(a)) document.documentElement.style.setProperty("--a", a);
     } catch (e) {}
-    // Brave is the default tab cloak. Show it from the first paint, unless the
-    // visitor picked another cloak (the app applies that one once it loads).
+    // Coursera is the default tab cloak. Show it from the first paint.
     try {
         var ck = localStorage.getItem("nocturne-cloak");
-        if (ck == null || ck === "brave") {
-            document.title = "Brave Search";
+        if (ck == null || ck === "brave" || ck === "coursera") {
+            document.title = "Dashboard | Coursera";
             var ic = document.createElement("link");
-            ic.rel = "icon"; ic.href = "https://brave.com/static-assets/images/brave-favicon.png";
+            ic.rel = "icon"; ic.href = "https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/favicon-v2-32x32.png";
             document.head.appendChild(ic);
         }
     } catch (e) {}

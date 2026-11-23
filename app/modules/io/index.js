@@ -1527,7 +1527,7 @@ var EpoxyTransport = class {
     var port = Number(url.port) || (secure ? 443 : 80);
     var writer = null, reader = null, state = 0, wq, closeTimer = 0, readyRes, ready = new Promise(function (r) { readyRes = r; }); // 0 connecting, 1 open, 2 closing, 3 closed
     var protos = protocols == null ? [] : (typeof protocols === "string" ? [protocols] : Array.from(protocols));
-    var muxRe = /MuxTaskEnded|Multiplexor task ended/i;
+    var muxRe = /MuxTaskEnded|Multiplexor task ended|Http2.*Reset|Reset.*Http2/i;
     var held = null, flushHeld = function () { var h = held; held = null; if (h) for (var hi = 0; hi < h.length; hi++) { try { onmessage(h[hi]); } catch (e) {} } };
     var finish = function (code, reason) {
         if (state === 3) return; flushHeld(); state = 3; clearTimeout(closeTimer);
@@ -1673,7 +1673,7 @@ var EpoxyTransport = class {
         }
         headersObj[key] = value;
       }
-      let res = await (async (u, o) => { for (let i = 0; ; i++) { try { if (this.__nocDead) await this.__nocRevive(); return await this.client.fetch(u, o); } catch (e) { var m = String(e && (e.message || e)); var mux = /MuxTaskEnded|Multiplexor task ended/i.test(m); if (mux) this.__nocDead = true; if (i >= (mux ? 3 : 2) || (typeof ReadableStream === "function" && o.body instanceof ReadableStream) || !(mux || /SendRequest|BrokenPipe|broken pipe|ChannelClosed|IncompleteMessage|connection closed before|connection reset|ConnectionReset|GoAway|GOAWAY|REFUSED_STREAM|tls handshake eof/i.test(m))) throw e; if (mux) await this.__nocRevive(); else await new Promise((r) => setTimeout(r, 50 * (i + 1))); } } })(remote.href, {
+      let res = await (async (u, o) => { for (let i = 0; ; i++) { try { if (this.__nocDead) await this.__nocRevive(); return await this.client.fetch(u, o); } catch (e) { var m = String(e && (e.message || e)); var mux = /MuxTaskEnded|Multiplexor task ended|Http2.*Reset|Reset.*Http2/i.test(m); if (mux) this.__nocDead = true; if (i >= (mux ? 3 : 2) || (typeof ReadableStream === "function" && o.body instanceof ReadableStream) || !(mux || /SendRequest|BrokenPipe|broken pipe|ChannelClosed|IncompleteMessage|connection closed before|connection reset|ConnectionReset|GoAway|GOAWAY|REFUSED_STREAM|tls handshake eof/i.test(m))) throw e; if (mux) await this.__nocRevive(); else await new Promise((r) => setTimeout(r, 50 * (i + 1))); } } })(remote.href, {
         method,
         body,
         headers: headersObj,
@@ -1729,7 +1729,7 @@ var EpoxyTransport = class {
       protocols,
       headersObj
     ));
-    ws.catch((e) => { if (/MuxTaskEnded|Multiplexor task ended/i.test(String(e && (e.message || e)))) { this.__nocDead = true; this.__nocRevive(); } });
+    ws.catch((e) => { if (/MuxTaskEnded|Multiplexor task ended|Http2.*Reset|Reset.*Http2/i.test(String(e && (e.message || e)))) { this.__nocDead = true; this.__nocRevive(); } });
     return [
       async (data) => {
         if (data instanceof Blob) data = await data.arrayBuffer();
